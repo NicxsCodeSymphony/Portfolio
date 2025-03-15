@@ -4,46 +4,50 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 export default function HeroSection() {
-  const headingRef = useRef(null);
-  const containerRef = useRef(null);
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [isMounted, setIsMounted] = useState(false);
   
   // Text scramble effect
   useEffect(() => {
     if (!headingRef.current) return;
-    
+  
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let interval = null;
-    
+    let interval: NodeJS.Timeout | null = null; // Ensure interval is correctly typed
+  
     const startAnimation = () => {
+      if (!headingRef.current) return; // Double-check that it's not null
+  
+      const originalText = headingRef.current.dataset.value || ""; // Ensure it has a valid value
+  
+      clearInterval(interval!);
+  
       let iteration = 0;
-      const originalText = headingRef.current.dataset.value;
-      
-      clearInterval(interval);
-      
       interval = setInterval(() => {
+        if (!headingRef.current) return; // Check again in case it becomes null
+  
         headingRef.current.innerText = originalText
           .split("")
-          .map((letter, index) => {
+          .map((letter: string, index: number) => { // ✅ Explicitly type `letter` and `index`
             if (index < iteration) {
               return originalText[index];
             }
-            
+  
             if (letter === " ") return " ";
             return letters[Math.floor(Math.random() * 26)];
           })
           .join("");
-        
+  
         if (iteration >= originalText.length) {
-          clearInterval(interval);
+          clearInterval(interval!);
         }
-        
+  
         iteration += 1 / 3;
       }, 30);
     };
-    
+  
     startAnimation();
-    
+  
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -52,14 +56,15 @@ export default function HeroSection() {
       },
       { threshold: 0.1 }
     );
-    
-    observer.observe(headingRef.current);
-    
+  
+    if (headingRef.current) observer.observe(headingRef.current);
+  
     return () => {
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
       if (headingRef.current) observer.unobserve(headingRef.current);
     };
-  }, [isMounted]);
+  }, [isMounted]); // Ensure dependencies are correct
+  
   
   // Three.js 3D background effect
   useEffect(() => {

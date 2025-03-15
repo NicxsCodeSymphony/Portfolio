@@ -159,7 +159,7 @@ const dataArray = new Uint8Array(bufferLength);`
   ];
   
   // Filter change animation
-  const handleTabChange = (tab) => {
+  const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
   

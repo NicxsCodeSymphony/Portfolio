@@ -84,7 +84,7 @@ export default function AboutSection() {
   
   const codeLineAnimation = {
     hidden: { opacity: 0, x: -20 },
-    visible: i => ({
+    visible: (i: number) => ({
       opacity: 1,
       x: 0,
       transition: { 
@@ -93,6 +93,7 @@ export default function AboutSection() {
       }
     })
   };
+  
 
   const techStack = [
     { name: "React.js", icon: <FaReact className="text-blue-400" />, color: "from-blue-500 to-blue-400" },
