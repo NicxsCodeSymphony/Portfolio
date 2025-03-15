@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Navbar from '../components/Navbar';
-import HeroSection from '../components/HeroSection.tsx';
+import Navbar from '@/components/Navbar';
+import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import ProjectsSection from '../components/ProjectsSection.tsx';
-import MusicSection from '../components/MusicSection.tsx';
-import ContactSection from '../components/ContactSection.tsx';
-import Footer from '../components/Footer';
+import ProjectsSection from '@/components/ProjectsSection';
+import MusicSection from '@/components/MusicSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const canvasRef = useRef(null);
