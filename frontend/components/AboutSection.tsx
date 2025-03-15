@@ -6,27 +6,27 @@ import { FaReact, FaNodeJs, FaDatabase, FaFigma } from "react-icons/fa";
 import { SiTailwindcss, SiFirebase, SiMongodb } from "react-icons/si";
 
 export default function AboutSection() {
-  const audioVisualizerRef = useRef(null);
+  const audioVisualizerRef = useRef<HTMLDivElement | null>(null);
+
   
   // Audio visualizer animation effect
   useEffect(() => {
-    if (!audioVisualizerRef.current) return;
-    
+    if (!audioVisualizerRef.current) return; // Prevents errors if ref is null
+  
     const bars = audioVisualizerRef.current.querySelectorAll('.visualizer-bar');
-    
+  
     const animateBars = () => {
-      bars.forEach(bar => {
-        // Random height for each bar to simulate audio visualization
+      bars.forEach((bar) => {
         const height = Math.floor(Math.random() * 100) + 20;
-        bar.style.height = `${height}%`;
+        (bar as HTMLElement).style.height = `${height}%`; // Type assertion to HTMLElement
       });
     };
-    
-    // Start animation
+  
     const interval = setInterval(animateBars, 200);
-    
+  
     return () => clearInterval(interval);
   }, []);
+  
 
   // Framer Motion variants
   const fadeIn = {
