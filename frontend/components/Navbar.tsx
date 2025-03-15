@@ -48,7 +48,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/">
           <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent cursor-pointer">
-            YourName
+            John Nico M. Edisan
           </span>
         </Link>
         
