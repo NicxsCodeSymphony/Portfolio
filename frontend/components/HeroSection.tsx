@@ -317,49 +317,42 @@ export default function HeroSection() {
   
   return (
     <section className="relative w-full h-screen overflow-hidden bg-gray-900 text-gray-200">
-      {/* Three.js container */}
-      <div 
-        ref={containerRef} 
-        className="absolute inset-0 z-0"
-      />
+      <div ref={containerRef} className="absolute inset-0 z-0" />
       
-      {/* Subtle gradient overlay for dark theme */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-gray-900/70 to-gray-900/90 z-10"></div>
       
-      {/* Content */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center px-4">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-3 flex items-center justify-center">
-            <span className="h-px w-8 mr-3 bg-purple-500 opacity-50"></span>
-            <span className="uppercase tracking-widest text-sm font-medium text-blue-400">Portfolio</span>
-            <span className="h-px w-8 ml-3 bg-blue-500 opacity-50"></span>
+            <span className="h-px w-6 sm:w-8 mr-2 sm:mr-3 bg-purple-500 opacity-50"></span>
+            <span className="uppercase tracking-widest text-xs sm:text-sm font-medium text-blue-400">Greetings! Visitors! I'm</span>
+            <span className="h-px w-6 sm:w-8 ml-2 sm:ml-3 bg-blue-500 opacity-50"></span>
           </div>
           
           <h1 
             ref={headingRef}
-            data-value="MUSICIAN & DEVELOPER"
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tighter bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+            data-value="JOHN NICO M. EDISAN"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 tracking-tighter bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
           >
-            MUSICIAN & DEVELOPER
+            JOHN NICO M. EDISAN
           </h1>
           
-          <h2 className="text-xl md:text-2xl mb-6 text-gray-300 max-w-2xl mx-auto font-light">
+          <h2 className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-300 max-w-2xl mx-auto font-light px-2">
             Creating harmonious experiences through code and sound
           </h2>
           
-          {/* Interactive buttons */}
           <div className="flex justify-center mb-8">
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <a 
                 href="#projects" 
-                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:translate-y-1"
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 sm:px-8 py-3 sm:py-4 text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:translate-y-1"
               >
                 <span className="relative z-10">View Projects</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </a>
               <a 
                 href="#music" 
-                className="group relative overflow-hidden rounded-lg bg-transparent border border-purple-500 px-8 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:translate-y-1"
+                className="group relative overflow-hidden rounded-lg bg-transparent border border-purple-500 px-6 sm:px-8 py-3 sm:py-4 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:translate-y-1"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Listen to Music</span>
@@ -367,95 +360,83 @@ export default function HeroSection() {
             </div>
           </div>
           
-          {/* Interactive music notification - only shown when playing */}
-          {isPlaying && (
-            <div className="mb-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-lg max-w-xl mx-auto border border-blue-500/20">
-              <p className="text-blue-400 mb-2 font-medium">Interactive Music Enabled!</p>
-              <p className="text-gray-300 text-sm">
-              Move your mouse to create sounds. Press A-K keys for piano notes (white keys) and W, E, T, Y, U keys for black keys (sharps). Explore the page to create your own musical experience.
+          {/* {isPlaying && (
+            <div className="mb-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-lg max-w-xs sm:max-w-md md:max-w-xl mx-auto border border-blue-500/20">
+              <p className="text-blue-400 mb-2 font-medium text-sm sm:text-base">Interactive Music Enabled!</p>
+              <p className="text-gray-300 text-xs sm:text-sm">
+                Move your mouse to create sounds. Press A-K keys for piano notes (white keys) and W, E, T, Y, U keys for black keys (sharps). Explore the page to create your own musical experience.
               </p>
             </div>
-          )}
+          )} */}
           
-          {/* Floating music toggle button */}
           <button
             onClick={toggleAudio}
-            className={`fixed bottom-8 left-8 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
+            className={`fixed bottom-4 sm:bottom-8 left-4 sm:left-8 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
               isPlaying 
                 ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-blue-500/30' 
                 : 'bg-gray-800 border border-blue-500/30 text-blue-400'
             }`}
             aria-label={isPlaying ? 'Disable interactive music' : 'Enable interactive music'}
           >
-            <span className="material-icons text-xl">
+            <span className="material-icons text-lg sm:text-xl">
               {isPlaying ? 'music_off' : 'music_note'}
             </span>
           </button>
         </div>
         
-        {/* Interactive music keyboard */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
-  <div className="flex justify-center mb-2">
-    <span className="text-gray-400 text-sm">Try the keyboard! (A-K for white keys, W,E,T,Y,U for black keys)</span>
-  </div>
-  <div className="flex justify-center">
-    <div className="flex relative h-24">
-      {/* White keys */}
-      {['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'].map((note, i) => (
-        <button
-          key={`white-${i}`}
-          className="w-10 h-24 bg-gray-200 border border-gray-700 rounded-b flex items-end justify-center pb-2 hover:bg-blue-100 transition-colors duration-150"
-          onClick={() => {
-            const baseFreq = 261.63; // C4
-            const freq = baseFreq * Math.pow(2, i/12);
-            playNote(freq);
-          }}
-        >
-          <span className="text-gray-800 text-xs">{note}</span>
-        </button>
-      ))}
-      
-      {/* Black keys */}
-      <div className="absolute top-0 left-0 h-14 w-full">
-        {/* C# */}
-        <button 
-          className="absolute left-7 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
-          onClick={() => playNote(277.18)}
-        ></button>
-        {/* D# */}
-        <button 
-          className="absolute left-17 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
-          onClick={() => playNote(311.13)}
-        ></button>
-        {/* F# */}
-        <button 
-          className="absolute left-37 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
-          onClick={() => playNote(369.99)}
-        ></button>
-        {/* G# */}
-        <button 
-          className="absolute left-47 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
-          onClick={() => playNote(415.30)}
-        ></button>
-        {/* A# */}
-        <button 
-          className="absolute left-57 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
-          onClick={() => playNote(466.16)}
-        ></button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-xs sm:max-w-md md:max-w-2xl px-4">
+          <div className="flex justify-center mb-2">
+            <span className="text-gray-400 text-xs sm:text-sm">Try the keyboard! (A-K for white keys, W,E,T,Y,U for black keys)</span>
+          </div>
+          <div className="flex justify-center overflow-x-auto pb-4">
+            <div className="flex relative h-16 sm:h-20 md:h-24">
+              {['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'].map((note, i) => (
+                <button
+                  key={`white-${i}`}
+                  className="w-6 sm:w-8 md:w-10 h-16 sm:h-20 md:h-24 bg-gray-200 border border-gray-700 rounded-b flex items-end justify-center pb-2 hover:bg-blue-100 transition-colors duration-150"
+                  onClick={() => {
+                    const baseFreq = 261.63;
+                    const freq = baseFreq * Math.pow(2, i/12);
+                    playNote(freq);
+                  }}
+                >
+                  <span className="text-gray-800 text-xs">{note}</span>
+                </button>
+              ))}
+              
+              <div className="absolute top-0 left-0 h-10 sm:h-12 md:h-14 w-full">
+                <button 
+                  className="absolute left-4 sm:left-6 md:left-7 w-4 sm:w-5 md:w-6 h-10 sm:h-12 md:h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+                  onClick={() => playNote(277.18)}
+                ></button>
+                <button 
+                  className="absolute left-10 sm:left-14 md:left-17 w-4 sm:w-5 md:w-6 h-10 sm:h-12 md:h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+                  onClick={() => playNote(311.13)}
+                ></button>
+                <button 
+                  className="absolute left-22 sm:left-30 md:left-37 w-4 sm:w-5 md:w-6 h-10 sm:h-12 md:h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+                  onClick={() => playNote(369.99)}
+                ></button>
+                <button 
+                  className="absolute left-28 sm:left-38 md:left-47 w-4 sm:w-5 md:w-6 h-10 sm:h-12 md:h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+                  onClick={() => playNote(415.30)}
+                ></button>
+                <button 
+                  className="absolute left-34 sm:left-46 md:left-57 w-4 sm:w-5 md:w-6 h-10 sm:h-12 md:h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+                  onClick={() => playNote(466.16)}
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
         
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-          <span className="text-gray-400 text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
+        <div className="absolute bottom-4 sm:bottom--10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+          {/* <span className="text-gray-400 text-xs sm:text-sm mb-2">Scroll to explore</span> */}
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-600 rounded-full flex justify-center">
             <div className="w-1 h-2 bg-purple-500 rounded-full animate-bounce mt-2"></div>
           </div>
         </div>
         
-        {/* Floating music notes animation */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {[...Array(10)].map((_, i) => (
             <div
