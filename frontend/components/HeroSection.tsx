@@ -7,28 +7,72 @@ export default function HeroSection() {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [noteFrequency, setNoteFrequency] = useState(440); // A4 note
   
+  // Audio context for interactive sound
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    const audioCtx = new AudioContext();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.value = noteFrequency;
+    gainNode.gain.value = 0;
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    oscillator.start();
+    
+    // Handle user interactions with sound
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isPlaying) return;
+      // Map mouse X position to a musical frequency (pentatonic scale notes)
+      const notes = [440, 493.88, 554.37, 659.25, 739.99]; // A4, B4, C#5, E5, F#5
+      const noteIndex = Math.floor((e.clientX / window.innerWidth) * notes.length);
+      const newFrequency = notes[noteIndex];
+      
+      setNoteFrequency(newFrequency);
+      oscillator.frequency.setValueAtTime(newFrequency, audioCtx.currentTime);
+      
+      // Set volume based on Y position
+      const volume = 1 - (e.clientY / window.innerHeight);
+      gainNode.gain.setValueAtTime(isPlaying ? volume * 0.2 : 0, audioCtx.currentTime);
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      oscillator.stop();
+      audioCtx.close();
+    };
+  }, [isPlaying, noteFrequency]);
+
   // Text scramble effect
   useEffect(() => {
     if (!headingRef.current) return;
   
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let interval: NodeJS.Timeout | null = null; // Ensure interval is correctly typed
+    let interval: NodeJS.Timeout | null = null;
   
     const startAnimation = () => {
-      if (!headingRef.current) return; // Double-check that it's not null
+      if (!headingRef.current) return;
   
-      const originalText = headingRef.current.dataset.value || ""; // Ensure it has a valid value
+      const originalText = headingRef.current.dataset.value || "";
   
       clearInterval(interval!);
   
       let iteration = 0;
       interval = setInterval(() => {
-        if (!headingRef.current) return; // Check again in case it becomes null
+        if (!headingRef.current) return;
   
         headingRef.current.innerText = originalText
           .split("")
-          .map((letter: string, index: number) => { // ✅ Explicitly type `letter` and `index`
+          .map((letter: string, index: number) => {
             if (index < iteration) {
               return originalText[index];
             }
@@ -63,8 +107,64 @@ export default function HeroSection() {
       if (interval) clearInterval(interval);
       if (headingRef.current) observer.unobserve(headingRef.current);
     };
-  }, [isMounted]); // Ensure dependencies are correct
+  }, [isMounted]);
   
+  // Piano key effect when typing
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const notes: {[key: string]: number} = {
+        'a': 261.63, // C4
+        'w': 277.18, // C#4
+        's': 293.66, // D4
+        'e': 311.13, // D#4
+        'd': 329.63, // E4
+        'f': 349.23, // F4
+        't': 369.99, // F#4
+        'g': 392.00, // G4
+        'y': 415.30, // G#4
+        'h': 440.00, // A4
+        'u': 466.16, // A#4
+        'j': 493.88, // B4
+        'k': 523.25  // C5
+      };
+      
+      const key = e.key.toLowerCase();
+      if (notes[key] && isPlaying) {
+        playNote(notes[key]);
+      }
+    };
+    
+    document.addEventListener('keypress', handleKeyPress);
+    
+    return () => {
+      document.removeEventListener('keypress', handleKeyPress);
+    };
+  }, [isPlaying]);
+  
+  // Function to play a note
+  const playNote = (frequency: number) => {
+    if (!isPlaying) return;
+    
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    const audioCtx = new AudioContext();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    gainNode.gain.value = 0.2;
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    oscillator.start();
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1);
+    
+    setTimeout(() => {
+      oscillator.stop();
+      audioCtx.close();
+    }, 1000);
+  };
   
   // Three.js 3D background effect
   useEffect(() => {
@@ -73,6 +173,7 @@ export default function HeroSection() {
     
     // Scene setup
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050505);
     
     // Responsive canvas size
     const sizes = {
@@ -106,10 +207,10 @@ export default function HeroSection() {
     
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     
-    // Create materials
+    // Create materials - dark theme colors
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.02,
-      color: new THREE.Color(0x3498db),
+      color: new THREE.Color(0x8b5cf6), // Purple
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending
@@ -122,7 +223,7 @@ export default function HeroSection() {
     // Create "musical wave" effect with a mesh
     const wavesGeometry = new THREE.PlaneGeometry(20, 20, 50, 50);
     const wavesMaterial = new THREE.MeshBasicMaterial({
-      color: 0x2980b9,
+      color: 0x3b82f6,
       wireframe: true,
       transparent: true,
       opacity: 0.15
@@ -157,7 +258,7 @@ export default function HeroSection() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
     
-    // Animation loop
+    // Animation loop with audio reactivity
     const clock = new THREE.Clock();
     
     const animate = () => {
@@ -168,13 +269,23 @@ export default function HeroSection() {
       particlesMesh.rotation.x = mouseY * 0.1;
       particlesMesh.rotation.z = mouseX * 0.1;
       
+      // Add audio reactivity - particles pulsate when audio is playing
+      if (isPlaying) {
+        const pulseScale = 1 + Math.sin(elapsedTime * 4) * 0.05;
+        particlesMesh.scale.set(pulseScale, pulseScale, pulseScale);
+        particlesMaterial.size = 0.02 * (1 + Math.sin(elapsedTime * 8) * 0.2);
+      }
+      
       // Animate wave
       const positions = wavesGeometry.attributes.position;
       
       for (let i = 0; i < positions.count; i++) {
         const x = positions.getX(i);
         const y = positions.getY(i);
-        const z = Math.sin(elapsedTime + x * 0.5) * 0.5;
+        
+        // More dynamic wave when audio is playing
+        const frequencyFactor = isPlaying ? (noteFrequency / 440) * 0.5 : 0.5;
+        const z = Math.sin(elapsedTime + x * frequencyFactor) * 0.5;
         
         positions.setZ(i, z);
       }
@@ -197,66 +308,187 @@ export default function HeroSection() {
       }
       window.removeEventListener('resize', () => {});
     };
-  }, [isMounted]);
+  }, [isMounted, isPlaying, noteFrequency]);
+  
+  // Toggle audio playback
+  const toggleAudio = () => {
+    setIsPlaying(!isPlaying);
+  };
   
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden bg-gray-900 text-gray-200">
       {/* Three.js container */}
       <div 
         ref={containerRef} 
         className="absolute inset-0 z-0"
       />
       
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/70 to-gray-900/90 z-10"></div>
+      {/* Subtle gradient overlay for dark theme */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-gray-900/70 to-gray-900/90 z-10"></div>
       
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-4">
         <div className="text-center">
           <div className="mb-3 flex items-center justify-center">
-            <span className="h-px w-8 bg-blue-500 mr-3"></span>
-            <span className="text-blue-500 uppercase tracking-widest text-sm font-medium">Portfolio</span>
-            <span className="h-px w-8 bg-blue-500 ml-3"></span>
+            <span className="h-px w-8 mr-3 bg-purple-500 opacity-50"></span>
+            <span className="uppercase tracking-widest text-sm font-medium text-blue-400">Portfolio</span>
+            <span className="h-px w-8 ml-3 bg-blue-500 opacity-50"></span>
           </div>
           
           <h1 
             ref={headingRef}
             data-value="MUSICIAN & DEVELOPER"
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tighter bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
           >
             MUSICIAN & DEVELOPER
           </h1>
           
-          <h2 className="text-xl md:text-2xl mb-12 text-gray-300 max-w-2xl mx-auto font-light">
+          <h2 className="text-xl md:text-2xl mb-6 text-gray-300 max-w-2xl mx-auto font-light">
             Creating harmonious experiences through code and sound
           </h2>
           
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
-            <a 
-              href="#projects" 
-              className="group relative overflow-hidden rounded-lg bg-blue-600 px-8 py-4 text-white transition-all duration-300"
-            >
-              <span className="relative z-10">View Projects</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </a>
-            <a 
-              href="#music" 
-              className="group relative overflow-hidden rounded-lg bg-transparent border border-white px-8 py-4 text-white transition-all duration-300"
-            >
-              <span className="relative z-10">Listen to Music</span>
-              <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
-              <span className="group-hover:text-gray-900 transition-colors duration-300">Listen to Music</span>
-            </a>
+          {/* Interactive buttons */}
+          <div className="flex justify-center mb-8">
+            <div className="flex gap-4">
+              <a 
+                href="#projects" 
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 hover:translate-y-1"
+              >
+                <span className="relative z-10">View Projects</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </a>
+              <a 
+                href="#music" 
+                className="group relative overflow-hidden rounded-lg bg-transparent border border-purple-500 px-8 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20 hover:translate-y-1"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="text-gray-200 group-hover:text-white transition-colors duration-300">Listen to Music</span>
+              </a>
+            </div>
           </div>
+          
+          {/* Interactive music notification - only shown when playing */}
+          {isPlaying && (
+            <div className="mb-8 p-4 bg-gray-800/50 backdrop-blur-sm rounded-lg max-w-xl mx-auto border border-blue-500/20">
+              <p className="text-blue-400 mb-2 font-medium">Interactive Music Enabled!</p>
+              <p className="text-gray-300 text-sm">
+              Move your mouse to create sounds. Press A-K keys for piano notes (white keys) and W, E, T, Y, U keys for black keys (sharps). Explore the page to create your own musical experience.
+              </p>
+            </div>
+          )}
+          
+          {/* Floating music toggle button */}
+          <button
+            onClick={toggleAudio}
+            className={`fixed bottom-8 left-8 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
+              isPlaying 
+                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-blue-500/30' 
+                : 'bg-gray-800 border border-blue-500/30 text-blue-400'
+            }`}
+            aria-label={isPlaying ? 'Disable interactive music' : 'Enable interactive music'}
+          >
+            <span className="material-icons text-xl">
+              {isPlaying ? 'music_off' : 'music_note'}
+            </span>
+          </button>
         </div>
+        
+        {/* Interactive music keyboard */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-2xl">
+  <div className="flex justify-center mb-2">
+    <span className="text-gray-400 text-sm">Try the keyboard! (A-K for white keys, W,E,T,Y,U for black keys)</span>
+  </div>
+  <div className="flex justify-center">
+    <div className="flex relative h-24">
+      {/* White keys */}
+      {['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'].map((note, i) => (
+        <button
+          key={`white-${i}`}
+          className="w-10 h-24 bg-gray-200 border border-gray-700 rounded-b flex items-end justify-center pb-2 hover:bg-blue-100 transition-colors duration-150"
+          onClick={() => {
+            const baseFreq = 261.63; // C4
+            const freq = baseFreq * Math.pow(2, i/12);
+            playNote(freq);
+          }}
+        >
+          <span className="text-gray-800 text-xs">{note}</span>
+        </button>
+      ))}
+      
+      {/* Black keys */}
+      <div className="absolute top-0 left-0 h-14 w-full">
+        {/* C# */}
+        <button 
+          className="absolute left-7 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+          onClick={() => playNote(277.18)}
+        ></button>
+        {/* D# */}
+        <button 
+          className="absolute left-17 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+          onClick={() => playNote(311.13)}
+        ></button>
+        {/* F# */}
+        <button 
+          className="absolute left-37 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+          onClick={() => playNote(369.99)}
+        ></button>
+        {/* G# */}
+        <button 
+          className="absolute left-47 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+          onClick={() => playNote(415.30)}
+        ></button>
+        {/* A# */}
+        <button 
+          className="absolute left-57 w-6 h-14 bg-gray-800 rounded-b z-10 hover:bg-gray-700 transition-colors duration-150"
+          onClick={() => playNote(466.16)}
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>
         
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
           <span className="text-gray-400 text-sm mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div className="w-1 h-2 bg-gray-400 rounded-full animate-bounce mt-2"></div>
+          <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
+            <div className="w-1 h-2 bg-purple-500 rounded-full animate-bounce mt-2"></div>
           </div>
+        </div>
+        
+        {/* Floating music notes animation */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {[...Array(10)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-float text-blue-500 opacity-20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${Math.random() * 10 + 5}s`,
+                fontSize: `${Math.random() * 20 + 20}px`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              ♪
+            </div>
+          ))}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i + 10}
+              className="absolute animate-float text-purple-500 opacity-20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${Math.random() * 10 + 5}s`,
+                fontSize: `${Math.random() * 20 + 20}px`,
+                transform: `rotate(${Math.random() * 360}deg)`
+              }}
+            >
+              ♫
+            </div>
+          ))}
         </div>
       </div>
     </section>
