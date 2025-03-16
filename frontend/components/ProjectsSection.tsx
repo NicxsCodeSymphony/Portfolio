@@ -3,75 +3,73 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, useAnimation, AnimatePresence } from 'framer-motion';
 
+interface Project {
+  id: number;
+  name: string;
+  description?: string;
+  category?: string;
+  technologies?: string[];
+  image?: string;
+  title: string;
+  url?: string;
+  status?: string;
+}
+
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState('all');
   const controls = useAnimation();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  
-  // Trigger animations when section comes into view
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+        console.error(err)
+      }
+    };
+    
+    fetchProjects();
+  }, []);
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
     }
   }, [isInView, controls]);
   
-  const projects = [
-    {
-      id: 1,
-      title: "Music Streaming Application",
-      description: "A full-stack music streaming platform with custom audio visualizer built using React, Node.js, and MongoDB.",
-      image: "/api/placeholder/600/400",
-      category: "fullstack",
-      technologies: ["React", "Node.js", "Express", "MongoDB", "Web Audio API"]
-    },
-    {
-      id: 2,
-      title: "Interactive 3D Portfolio",
-      description: "A Three.js powered interactive portfolio with custom 3D models and animations.",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      technologies: ["Three.js", "React", "GSAP", "WebGL"]
-    },
-    {
-      id: 3,
-      title: "Music Production Suite",
-      description: "Digital audio workstation interface with collaborative features for musicians.",
-      image: "/api/placeholder/600/400",
-      category: "music",
-      technologies: ["Vue.js", "Web Audio API", "Firebase", "Tone.js"]
-    },
-    {
-      id: 4,
-      title: "E-commerce Platform",
-      description: "A fully responsive e-commerce platform with payment integration and admin dashboard.",
-      image: "/api/placeholder/600/400",
-      category: "fullstack",
-      technologies: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"]
-    },
-    {
-      id: 5,
-      title: "Musical Instrument Visualizer",
-      description: "Interactive web application that visualizes sound frequencies from various instruments.",
-      image: "/api/placeholder/600/400",
-      category: "music",
-      technologies: ["JavaScript", "Canvas API", "Web Audio API"]
-    },
-    {
-      id: 6,
-      title: "Developer Blog",
-      description: "Personal tech blog with custom CMS and code snippet highlighting.",
-      image: "/api/placeholder/600/400",
-      category: "frontend",
-      technologies: ["Gatsby", "GraphQL", "MDX", "Netlify CMS"]
-    }
-  ];
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+
+      }
+    };
+    
+    fetchProjects();
+  }, []);
   
   const filteredProjects = activeTab === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeTab);
   
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -121,7 +119,6 @@ export default function ProjectsSection() {
     }
   };
 
-  // Code snippets for background decoration
   const codeSnippets = [
     { 
       top: "5%", 
@@ -158,7 +155,6 @@ const dataArray = new Uint8Array(bufferLength);`
     }
   ];
   
-  // Filter change animation
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
   };
@@ -169,7 +165,6 @@ const dataArray = new Uint8Array(bufferLength);`
       className="py-20 bg-gray-900 relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Code Snippets Background */}
       {codeSnippets.map((snippet, index) => (
         <motion.div
           key={index}
@@ -210,7 +205,7 @@ const dataArray = new Uint8Array(bufferLength);`
           animate={controls}
         >
           <div className="inline-flex bg-gray-800 rounded-lg p-1">
-            {['all', 'frontend', 'fullstack', 'music'].map((tab) => (
+            {['all', 'Frontend', 'Fullstack', 'Music'].map((tab) => (
               <motion.button
                 key={tab}
                 className={`px-4 py-2 rounded-md transition-colors ${
@@ -278,7 +273,7 @@ const dataArray = new Uint8Array(bufferLength);`
                   <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-300 text-sm mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, index) => (
+                    {(project.technologies || []).map((tech, index) => (
                       <motion.span 
                         key={tech} 
                         className="bg-gray-700 px-2 py-1 rounded-md text-xs"
@@ -290,13 +285,15 @@ const dataArray = new Uint8Array(bufferLength);`
                       </motion.span>
                     ))}
                   </div>
+
                   <motion.a 
-                    href="#" 
-                    className="text-blue-400 hover:text-blue-500 text-sm flex items-center group"
+                    // href="#" 
+                    className="text-blue-400 hover:text-blue-500 text-sm flex items-center group cursor cursor-pointer"
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => window.location.href = `${project.url}`}
                   >
-                    View Project
+                    See Demo
                     <motion.svg 
                       className="w-4 h-4 ml-1" 
                       fill="none" 
@@ -317,7 +314,6 @@ const dataArray = new Uint8Array(bufferLength);`
           </AnimatePresence>
         </motion.div>
 
-        {/* Empty state when no projects match filter */}
         {filteredProjects.length === 0 && (
           <motion.div 
             className="text-center py-12"

@@ -17,56 +17,27 @@ interface Track {
   title?: string;
   description?: string;
   duration: string;
+  youtubeAudioUrl?: string;  
 }
 
+
 export default function MusicSection() {
-  const [activeTrack, setActiveTrack] = useState<{
-    id: string;
-    videoId: string;
-    image: string;
-    title: string;
-    duration: string;
-  } | null>(null);
+  const [activeTrack, setActiveTrack] = useState<Track | null>(null);
   
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackDuration, setTrackDuration] = useState(0);
-  const [tracks, setTracks] = useState([
-    {
-      id: 1,
-      title: "Loading...",
-      description: "Electronic orchestral fusion with ambient textures",
-      duration: "0:00",
-      image: "/api/placeholder/200/200",
-      youtubeAudioUrl: "https://www.youtube.com/watch?v=y7K_LVBChXY"
-    },
-    {
-      id: 2,
-      title: "Loading...",
-      description: "Lo-fi beats with algorithm-generated melodies",
-      duration: "0:00",
-      image: "/api/placeholder/200/200",
-      youtubeAudioUrl: "https://www.youtube.com/watch?v=jfJuNiBIj1I"
-    },
-    {
-      id: 3,
-      title: "Loading...",
-      description: "Techno inspired by programming patterns",
-      duration: "0:00",
-      image: "/api/placeholder/200/200",
-      youtubeAudioUrl: "https://www.youtube.com/watch?v=bAkNOmAlyLk"
-    },
-    {
-      id: 4,
-      title: "Loading...",
-      description: "Recursive ambient soundscapes",
-      duration: "0:00",
-      image: "/api/placeholder/200/200",
-      youtubeAudioUrl: "https://www.youtube.com/watch?v=y21yInFXW4g"
-    }
-  ]);
+  const [tracks, setTracks] = useState<Track[]>([]);
 
-  
+  useEffect(() => {
+    const fetchTracks = async () => {
+      const response = await fetch('/api/tracks');
+      const data = await response.json();
+      setTracks(data);
+    };
+
+    fetchTracks();
+  }, []);
   
   const audioRef = useRef<YT.Player | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
@@ -99,7 +70,7 @@ export default function MusicSection() {
     
     for (let i = 0; i < updatedTracks.length; i++) {
       const track = updatedTracks[i];
-      const videoId = track.youtubeAudioUrl.split('v=')[1].split('&')[0];
+      const videoId = track.youtubeAudioUrl?.split('v=')[1]?.split('&')[0] || 'defaultVideoId';
       
       const tempDiv = document.createElement('div');
       tempDiv.id = `temp-player-${i}`;
@@ -298,84 +269,77 @@ export default function MusicSection() {
   return (
     <motion.section 
       id="music" 
-      className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={sectionVariants}
     >
-      {/* Hidden YouTube player for audio */}
       <div id="youtube-audio-player" className="hidden"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold mb-16 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 md:mb-16 text-center"
           variants={itemVariants}
         >
           My <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Music</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold mb-6">Latest Tracks</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Latest Tracks</h3>
             
-            {/* Current track player */}
             {activeTrack && (
               <motion.div 
-                className="bg-gray-800/80 backdrop-blur-md rounded-xl p-6 mb-8"
+                className="bg-gray-800/80 backdrop-blur-md rounded-xl p-4 sm:p-6 mb-6 sm:mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 flex-shrink-0">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0">
                     <img 
                       src={activeTrack.image} 
                       alt={activeTrack.title} 
                       className={`w-full h-full object-cover rounded-md ${isPlaying ? 'pulse-animation' : ''}`}
                     />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-lg">{activeTrack.title}</h4>
-                    {/* <p className="text-sm text-gray-400">{activeTrack.description}</p> */}
+                  <div className="overflow-hidden">
+                    <h4 className="font-semibold text-base sm:text-lg truncate">{activeTrack.title}</h4>
                   </div>
                   <button 
-                    className="ml-auto bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-full flex items-center justify-center transition-colors"
+                    className="ml-auto bg-blue-600 hover:bg-blue-700 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-colors"
                     onClick={() => handlePlayTrack(activeTrack)}
                   >
                     {isPlaying ? (
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
                       </svg>
                     ) : (
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     )}
                   </button>
                 </div>
                 
-                <div className="mb-2 h-12 flex items-center">
-  <div 
-    className="flex-1 h-full flex items-center justify-between cursor-pointer overflow-hidden rounded-lg bg-gray-700/50 relative"
-    ref={progressRef}
-    onClick={handleProgressClick}
-  >
-    {/* Progress bar */}
-    <div 
-      className="absolute h-full bg-blue-500/30 z-0 pointer-events-none"
-      style={{ width: `${(trackProgress / trackDuration) * 100}%` }}
-    ></div>
-
-    {/* Sound wave visualization */}
-    <div className="flex items-end h-full w-[100vw] px-2 py-1 relative">
-      {generateSoundwave()}
-    </div>
-  </div>
-</div>
-
+                <div className="mb-2 h-8 sm:h-10 md:h-12 flex items-center">
+                  <div 
+                    className="flex-1 h-full flex items-center justify-between cursor-pointer overflow-hidden rounded-lg bg-gray-700/50 relative"
+                    ref={progressRef}
+                    onClick={handleProgressClick}
+                  >
+                    <div 
+                      className="absolute h-full bg-blue-500/30 z-0 pointer-events-none"
+                      style={{ width: `${(trackProgress / trackDuration) * 100}%` }}
+                    ></div>
+  
+                    <div className="flex items-end h-full w-full px-2 py-1 relative">
+                      {generateSoundwave()}
+                    </div>
+                  </div>
+                </div>
                 
-                {/* Time display */}
                 <div className="flex justify-between text-xs text-gray-400">
                   <span>{formatTime(trackProgress)}</span>
                   <span>{activeTrack.duration}</span>
@@ -383,101 +347,97 @@ export default function MusicSection() {
               </motion.div>
             )}
             
-            <div className="space-y-4">
-            {tracks.map((track) => (
-        <motion.div 
-          key={track.id}
-          className={`bg-gray-800/70 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 hover:bg-gray-700/70 ${
-            activeTrack?.id === String(track.id) ? 'border-l-4 border-blue-500 pl-3' : ''
-          }`}
-          variants={itemVariants}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {/* Thumbnail & Play Button */}
-          <div 
-            className="w-16 h-16 flex-shrink-0 relative group cursor-pointer"
-            onClick={() => {
-              const videoId = track.youtubeAudioUrl.split('v=')[1].split('&')[0];
-              handlePlayTrack({
-                id: String(track.id),
-                videoId,
-                image: track.image,
-                title: track.title,
-                description: track.description,
-                duration: track.duration
-              });
-            }}
-          >
-            <img 
-              src={track.image || "/placeholder.jpg"}  
-              alt={track.title || "Untitled Track"}  
-              className={`w-full h-full object-cover rounded-md transition-all duration-300 ${
-                activeTrack?.id === String(track.id) && isPlaying ? 'pulse-animation' : ''
-              }`}
-            />
-            {/* Overlay Play/Pause Button */}
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
-              <button className="text-white">
-                {activeTrack?.id === String(track.id) && isPlaying ? (
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                  </svg>
-                ) : (
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Track Info */}
-          <div className="flex-grow">
-            <h4 className="font-semibold">{track.title || "Unknown Title"}</h4>
-            <p className="text-sm text-gray-400">{track.description || "No description available"}</p>
-          </div>
-
-          {/* Track Duration */}
-          <div className="text-sm text-gray-400">{track.duration || "--:--"}</div>
-        </motion.div>
-      ))}
+            <div className="space-y-3 sm:space-y-4">
+              {tracks.map((track) => (
+                <motion.div 
+                  key={track.id}
+                  className={`bg-gray-800/70 rounded-lg p-3 sm:p-4 flex items-center gap-3 sm:gap-4 transition-all duration-300 hover:bg-gray-700/70 ${
+                    activeTrack?.id === String(track.id) ? 'border-l-4 border-blue-500 pl-2 sm:pl-3' : ''
+                  }`}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div 
+                    className="w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0 relative group cursor-pointer"
+                    onClick={() => {
+                     const videoId = track.youtubeAudioUrl?.split('v=')[1]?.split('&')[0] || 'defaultVideoId';
+                      handlePlayTrack({
+                        id: String(track.id),
+                        videoId: videoId,  // Add the videoId correctly
+                        image: track.image,
+                        title: track.title,
+                        description: track.description,
+                        duration: track.duration,
+                      });
+                    }}
+                  >
+                    <img 
+                      src={track.image || "/placeholder.jpg"}  
+                      alt={track.title || "Untitled Track"}  
+                      className={`w-full h-full object-cover rounded-md transition-all duration-300 ${
+                        activeTrack?.id === String(track.id) && isPlaying ? 'pulse-animation' : ''
+                      }`}
+                    />
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
+                      <button className="text-white">
+                        {activeTrack?.id === String(track.id) && isPlaying ? (
+                          <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                          </svg>
+                        ) : (
+                          <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+  
+                  <div className="flex-grow min-w-0">
+                    <h4 className="font-semibold text-sm sm:text-base truncate">{track.title || "Unknown Title"}</h4>
+                    <p className="text-xs sm:text-sm text-gray-400 truncate">{track.description || "No description available"}</p>
+                  </div>
+  
+                  <div className="text-xs sm:text-sm text-gray-400 flex-shrink-0">{track.duration || "--:--"}</div>
+                </motion.div>
+              ))}
             </div>
             <motion.div 
-              className="mt-8"
+              className="mt-6 sm:mt-8"
               variants={itemVariants}
             >
               <a 
                 href="#" 
-                className="inline-flex items-center text-blue-400 hover:text-blue-500"
+                className="inline-flex items-center text-blue-400 hover:text-blue-500 text-sm sm:text-base"
               >
                 View all tracks
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </a>
             </motion.div>
           </motion.div>
           
-          <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-bold mb-6">Music & Development</h3>
+          <motion.div variants={itemVariants} className="mt-8 lg:mt-0">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Music & Development</h3>
             <motion.div 
-              className="bg-gray-800/70 backdrop-blur-sm rounded-lg p-6"
+              className="bg-gray-800/70 backdrop-blur-sm rounded-lg p-4 sm:p-6"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
                 My journey as both a musician and developer has led me to explore the fascinating intersection between sound and code. I'm passionate about creating digital experiences that bridge these two worlds.
               </p>
-              <p className="text-gray-300 mb-4">
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
                 From developing audio visualization tools to creating interactive music applications, I leverage my dual expertise to build unique projects that push the boundaries of web technology and sound design.
               </p>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 mb-6 text-sm sm:text-base">
                 Interested in collaborating on a project that combines music and technology? Let's create something amazing together.
               </p>
               <motion.a 
                 href="#contact" 
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors duration-300 inline-block"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md transition-colors duration-300 inline-block text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -488,7 +448,6 @@ export default function MusicSection() {
         </div>
       </div>
       
-      {/* Add animations for playing tracks and soundwave */}
       <style jsx global>{`
         @keyframes pulse {
           0% { transform: scale(1); }
