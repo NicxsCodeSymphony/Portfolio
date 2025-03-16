@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <a href="#" className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                YourName
+                John Nico M. Edisan
               </a>
               <p className="text-gray-400 text-sm mt-1">Musician & Full Stack Developer</p>
             </div>

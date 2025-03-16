@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import Head from 'next/head';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
