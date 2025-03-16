@@ -10,10 +10,24 @@ declare global {
   }
 }
 
-
+interface Track {
+  id: string;
+  videoId: string;
+  image?: string;
+  title?: string;
+  description?: string;
+  duration: string;
+}
 
 export default function MusicSection() {
-  const [activeTrack, setActiveTrack] = useState<{ id: string; videoId: string } | null>(null);
+  const [activeTrack, setActiveTrack] = useState<{
+    id: string;
+    videoId: string;
+    image: string;
+    title: string;
+    duration: string;
+  } | null>(null);
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackDuration, setTrackDuration] = useState(0);
@@ -51,6 +65,8 @@ export default function MusicSection() {
       youtubeAudioUrl: "https://www.youtube.com/watch?v=y21yInFXW4g"
     }
   ]);
+
+  
   
   const audioRef = useRef<YT.Player | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
@@ -136,9 +152,7 @@ export default function MusicSection() {
     };
   }, [isPlaying]);
   
-  
-  // Handle track play
-  const handlePlayTrack = (track: { id: string; videoId: string }) => {
+  const handlePlayTrack = (track: Track) => {
     if (activeTrack?.id === track.id) {
       setIsPlaying(!isPlaying);
       if (audioRef.current) {
@@ -149,7 +163,15 @@ export default function MusicSection() {
         }
       }
     } else {
-      setActiveTrack(track);
+      setActiveTrack({
+        ...track,
+        id: String(track.id),
+        image: track.image || "default-image.jpg",
+        title: track.title || "Unknown Title",
+        duration: track.duration || "0:00",
+      });
+      
+  
       setIsPlaying(true);
       setTrackProgress(0);
   
@@ -158,14 +180,7 @@ export default function MusicSection() {
       }
   
       if (!(window as any).YT) {
-        const tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName("script")[0];
-        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-  
-        (window as any).onYouTubeIframeAPIReady = () => {
-          createPlayer(track);
-        };
+        loadYouTubeAPI(() => createPlayer(track)); // Load API only once
       } else {
         createPlayer(track);
       }
@@ -173,37 +188,54 @@ export default function MusicSection() {
   };
   
   
-  const createPlayer = (track: { youtubeAudioUrl: string }) => {
-    const videoId = track.youtubeAudioUrl.split("v=")[1]?.split("&")[0];
+  const loadYouTubeAPI = (callback: () => void) => {
+    if ((window as any).YT) {
+      callback();
+      return;
+    }
+    
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
   
-    if (!videoId) return;
+    (window as any).onYouTubeIframeAPIReady = callback;
+  };
   
+  
+  
+  const createPlayer = (track: { videoId: string }) => {
     audioRef.current = new (window as any).YT.Player("youtube-audio-player", {
       height: "0",
       width: "0",
-      videoId: videoId,
+      videoId: track.videoId, // Use track.videoId
       playerVars: {
         autoplay: 1,
         controls: 0,
       },
       events: {
-        onStateChange: (event: YT.OnStateChangeEvent) => {
-          if (event.data === YT.PlayerState.PLAYING) {
-            setIsPlaying(true);
-          } else if (
-            event.data === YT.PlayerState.PAUSED ||
-            event.data === YT.PlayerState.ENDED
-          ) {
-            setIsPlaying(false);
-            if (event.data === YT.PlayerState.ENDED) {
-              setActiveTrack(null);
-              setTrackProgress(0);
-            }
+        onStateChange: (event: { data: number }) => {
+          switch (event.data) {
+            case (window as any).YT.PlayerState.PLAYING:
+              setIsPlaying(true);
+              break;
+            case (window as any).YT.PlayerState.PAUSED:
+            case (window as any).YT.PlayerState.ENDED:
+              setIsPlaying(false);
+              if (event.data === (window as any).YT.PlayerState.ENDED) {
+                setActiveTrack(null);
+                setTrackProgress(0);
+              }
+              break;
+            default:
+              break;
           }
         },
       },
     });
   };
+  
+
   
   
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -305,7 +337,7 @@ export default function MusicSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg">{activeTrack.title}</h4>
-                    <p className="text-sm text-gray-400">{activeTrack.description}</p>
+                    {/* <p className="text-sm text-gray-400">{activeTrack.description}</p> */}
                   </div>
                   <button 
                     className="ml-auto bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-full flex items-center justify-center transition-colors"
@@ -352,44 +384,64 @@ export default function MusicSection() {
             )}
             
             <div className="space-y-4">
-              {tracks.map((track) => (
-                <motion.div 
-                  key={track.id}
-                  className={`bg-gray-800/70 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 hover:bg-gray-700/70 ${activeTrack?.id === track.id ? 'border-l-4 border-blue-500 pl-3' : ''}`}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div 
-                    className="w-16 h-16 flex-shrink-0 relative group cursor-pointer"
-                    onClick={() => handlePlayTrack(track)}
-                  >
-                    <img 
-                      src={track.image} 
-                      alt={track.title} 
-                      className={`w-full h-full object-cover rounded-md transition-all duration-300 ${activeTrack?.id === track.id && isPlaying ? 'pulse-animation' : ''}`}
-                    />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
-                      <button className="text-white">
-                        {activeTrack?.id === track.id && isPlaying ? (
-                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                          </svg>
-                        ) : (
-                          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex-grow">
-                    <h4 className="font-semibold">{track.title}</h4>
-                    <p className="text-sm text-gray-400">{track.description}</p>
-                  </div>
-                  <div className="text-sm text-gray-400">{track.duration}</div>
-                </motion.div>
-              ))}
+            {tracks.map((track) => (
+        <motion.div 
+          key={track.id}
+          className={`bg-gray-800/70 rounded-lg p-4 flex items-center gap-4 transition-all duration-300 hover:bg-gray-700/70 ${
+            activeTrack?.id === String(track.id) ? 'border-l-4 border-blue-500 pl-3' : ''
+          }`}
+          variants={itemVariants}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {/* Thumbnail & Play Button */}
+          <div 
+            className="w-16 h-16 flex-shrink-0 relative group cursor-pointer"
+            onClick={() => {
+              const videoId = track.youtubeAudioUrl.split('v=')[1].split('&')[0];
+              handlePlayTrack({
+                id: String(track.id),
+                videoId,
+                image: track.image,
+                title: track.title,
+                description: track.description,
+                duration: track.duration
+              });
+            }}
+          >
+            <img 
+              src={track.image || "/placeholder.jpg"}  
+              alt={track.title || "Untitled Track"}  
+              className={`w-full h-full object-cover rounded-md transition-all duration-300 ${
+                activeTrack?.id === String(track.id) && isPlaying ? 'pulse-animation' : ''
+              }`}
+            />
+            {/* Overlay Play/Pause Button */}
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
+              <button className="text-white">
+                {activeTrack?.id === String(track.id) && isPlaying ? (
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                  </svg>
+                ) : (
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Track Info */}
+          <div className="flex-grow">
+            <h4 className="font-semibold">{track.title || "Unknown Title"}</h4>
+            <p className="text-sm text-gray-400">{track.description || "No description available"}</p>
+          </div>
+
+          {/* Track Duration */}
+          <div className="text-sm text-gray-400">{track.duration || "--:--"}</div>
+        </motion.div>
+      ))}
             </div>
             <motion.div 
               className="mt-8"
