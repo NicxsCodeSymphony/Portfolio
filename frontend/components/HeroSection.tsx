@@ -338,7 +338,7 @@ export default function HeroSection() {
           </h1>
           
           <h2 className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-300 max-w-2xl mx-auto font-light px-2">
-            Creating harmonious experiences through code and sound
+           Harmonizing code and creativity to orchestrate digital solutions.
           </h2>
           
           <div className="flex justify-center mb-8">
