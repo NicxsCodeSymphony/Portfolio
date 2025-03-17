@@ -38,7 +38,7 @@ export async function GET() {
         "I'm an aspiring IT professional who loves building user-friendly websites and applications. I combine technical skills with creative problem-solving to create solutions that work smoothly and look great.",
         "When I'm not coding, I enjoy making music. To me, writing code and composing music are similar—they both require precision, creativity, and a good sense of patterns to create something meaningful."
       ],
-      quote: "Currently undergoing my On-The-Job Training, where I'm developing an inventory system for an educational institution."
+      quote: "Harmonizing code and creativity to orchestrate digital solutions."
     },
     profileImage: "https://avatars.githubusercontent.com/u/118499511?v=4",
     videoUrl: "https://www.youtube.com/embed/FFARF3jFYv8",
