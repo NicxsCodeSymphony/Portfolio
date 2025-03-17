@@ -65,7 +65,8 @@ export async function GET() {
         { name: "Firebase", icon: "SiFirebase" },
         { name: "Figma", icon: "FaFigma" },
         { name: "Guitar", icon: "FaGuitar" },
-        { name: "Piano", icon: "IoMdMusicalNote" }
+        { name: "Piano", icon: "IoMdMusicalNote" },
+        {name: "Violin", icon: "FaGuitar"}
       ]
     }
   };
