@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_sections",
+  "info": {
+    "singularName": "contact-section",
+    "pluralName": "contact-sections",
+    "displayName": "Contact Section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "social-link.social-link-component",
+      "repeatable": true
+    }
+  }
+}

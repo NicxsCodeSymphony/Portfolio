@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_technology_technology_components",
+  "info": {
+    "displayName": "Technology Component",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

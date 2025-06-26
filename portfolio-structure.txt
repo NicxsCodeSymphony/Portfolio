@@ -1,0 +1,107 @@
+Portfolio Content Structure
+
+1. SINGLE TYPES
+---------------
+a) Hero Section (hero)
+   - Title: Text
+   - Subtitle: Text
+   - Description: Rich Text
+   - Background Image: Media
+   - Profile Picture: Media
+   - Call to Action Button:
+     - Text: Text
+     - Link: Text
+
+b) About Section (about)
+   - Title: Text
+   - Description: Rich Text
+   - Skills: Component (Repeatable - Skills)
+   - Resume Link: Text
+   - Profile Image: Media
+   - Experience: Component (Repeatable - Experience)
+   - Education: Component (Repeatable - Education)
+
+c) Contact Section (contact)
+   - Title: Text
+   - Description: Rich Text
+   - Email: Text
+   - Phone: Text
+   - Location: Text
+   - Social Links: Component (Repeatable - Social Link)
+
+2. COLLECTION TYPES
+------------------
+a) Projects (projects)
+   - Title: Text
+   - Description: Rich Text
+   - Short Description: Text
+   - Project Image: Media
+   - Technologies: Component (Repeatable - Technology)
+   - Project URL: Text
+   - Github URL: Text
+   - Featured: Boolean
+   - Order: Integer
+   - Project Details: Component (Project Detail)
+
+b) Testimonials (testimonials)
+   - Name: Text
+   - Position: Text
+   - Company: Text
+   - Image: Media
+   - Testimonial: Rich Text
+   - Rating: Integer (1-5)
+   - Featured: Boolean
+   - Order: Integer
+   - LinkedIn Profile: Text (optional)
+   - Date: Date
+
+3. COMPONENTS
+------------
+a) Skills Component (skills)
+   - Name: Text
+   - Proficiency: Integer (1-100)
+   - Icon: Media
+   - Category: Enumeration (Frontend, Backend, Tools, etc.)
+
+b) Experience Component (experience)
+   - Company Name: Text
+   - Position: Text
+   - Start Date: Date
+   - End Date: Date
+   - Current: Boolean
+   - Description: Rich Text
+   - Company Logo: Media
+   - Location: Text
+
+c) Education Component (education)
+   - Institution: Text
+   - Degree: Text
+   - Field of Study: Text
+   - Start Date: Date
+   - End Date: Date
+   - Description: Rich Text
+   - Institution Logo: Media
+
+d) Social Link Component (social-link)
+   - Platform: Text
+   - URL: Text
+   - Icon: Media
+
+e) Technology Component (technology)
+   - Name: Text
+   - Icon: Media
+
+f) Project Detail Component (project-detail)
+   - Features: Rich Text
+   - Challenge: Rich Text
+   - Solution: Rich Text
+   - Technical Details: Rich Text
+   - Project Timeline: Text
+   - Team Size: Integer
+
+Notes:
+- All text fields can be made multilingual if needed
+- Media fields support images, videos, and documents
+- Rich Text fields support markdown formatting
+- Components can be reused across different content types
+- The structure can be extended based on specific needs 

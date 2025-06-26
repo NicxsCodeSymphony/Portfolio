@@ -1,0 +1,53 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_sections",
+  "info": {
+    "singularName": "about-section",
+    "pluralName": "about-sections",
+    "displayName": "About Section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "skills": {
+      "type": "component",
+      "component": "skills.skills-component",
+      "repeatable": true
+    },
+    "resumeLink": {
+      "type": "text"
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "experience": {
+      "type": "component",
+      "component": "experience.experience-component",
+      "repeatable": true
+    },
+    "education": {
+      "type": "component",
+      "component": "education.education-component",
+      "repeatable": true
+    }
+  }
+}

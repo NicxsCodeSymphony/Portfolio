@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_experience_experience_components",
+  "info": {
+    "displayName": "Experience Component",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "company": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "current": {
+      "type": "boolean",
+      "required": false,
+      "default": false
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "location": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

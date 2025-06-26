@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_cta_ctas",
+  "info": {
+    "displayName": "cta",
+    "icon": "paperPlane"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "other"
+      ]
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "medium",
+        "large",
+        "extra large"
+      ]
+    },
+    "icon": {
+      "type": "string"
+    },
+    "external": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

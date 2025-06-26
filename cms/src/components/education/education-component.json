@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_education_education_components",
+  "info": {
+    "displayName": "Education Component",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "institution": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "degree": {
+      "type": "string",
+      "required": true
+    },
+    "fieldOfStudy": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

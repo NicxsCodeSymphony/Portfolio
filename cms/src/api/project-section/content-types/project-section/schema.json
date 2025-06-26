@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "project_sections",
+  "info": {
+    "singularName": "project-section",
+    "pluralName": "project-sections",
+    "displayName": "Project Section"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    }
+  }
+}

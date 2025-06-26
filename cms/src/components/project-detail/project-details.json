@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_project_detail_project_details",
+  "info": {
+    "displayName": "Project Details",
+    "icon": "envelop"
+  },
+  "options": {},
+  "attributes": {
+    "features": {
+      "type": "blocks",
+      "required": true
+    },
+    "challenge": {
+      "type": "blocks"
+    },
+    "solution": {
+      "type": "boolean"
+    },
+    "technicalDetails": {
+      "type": "blocks"
+    },
+    "projectTimeline": {
+      "type": "blocks"
+    },
+    "teamSize": {
+      "type": "integer",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_skills_skills_components",
+  "info": {
+    "displayName": "Skills Component",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "proficiency": {
+      "type": "biginteger",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Frontend",
+        "Backend",
+        "Tools",
+        "Soft"
+      ]
+    }
+  },
+  "config": {}
+}
