@@ -8,6 +8,7 @@ import Contact from "./section/Contact";
 import ScrollAnimation from "./components/ScrollAnimation";
 import Stacks from "./section/Stacks";
 import BackToTopButton from "./components/BackToTopButton";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
           <Contact id="contact" />
         </ScrollAnimation>
       </div>
+      <Footer />
       <BackToTopButton />
     </main>
   );
