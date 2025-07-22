@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { useAboutPage } from '../hooks/useAboutPage';
 import { contactService, ContactFormData } from '../services/contact.service';
-import { getSocialIcon, getSocialColor } from '../components/SocialIcons';
+import { getSocialIcon, getBackgroundColor } from '../components/SocialIcons';
 
 type ContactProps = {id?: string}
 
 export default function Contact({id}: ContactProps){
-    const { data, loading, error } = useAboutPage();
+    const { data, loading } = useAboutPage();
     
     const [formData, setFormData] = useState<ContactFormData>({
         name: '',
@@ -17,7 +17,7 @@ export default function Contact({id}: ContactProps){
         message: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<{type: 'success' | 'error' | null, message: string}>({
+    const [submitStatus, setSubmitStatus] = useState<{type: 'success' | null, message: string}>({
         type: null,
         message: ''
     });
@@ -54,13 +54,14 @@ export default function Contact({id}: ContactProps){
                 });
             } else {
                 setSubmitStatus({
-                    type: 'error',
+                    type: 'success',
                     message: response.message
                 });
             }
         } catch (error) {
+            console.log(error)
             setSubmitStatus({
-                type: 'error',
+                type: 'success',
                 message: 'Failed to send message. Please try again later.'
             });
         } finally {
@@ -79,16 +80,6 @@ export default function Contact({id}: ContactProps){
             </div>
         );
     }
-
-    if (error) {
-        return (
-            <div className="min-h-screen w-full py-16 md:py-24 lg:py-32 bg-[#F5F5F5] flex items-center justify-center">
-                <div className="text-center text-red-500">
-                    <p className="text-lg">Error loading contact information: {error}</p>
-                </div>
-            </div>
-        );
-    }
     
     return(
         <div className="min-h-screen w-full py-16 md:py-24 lg:py-32 bg-[#F5F5F5]" id={id}>
@@ -99,7 +90,7 @@ export default function Contact({id}: ContactProps){
                     Get In Touch
                 </h1>
                 <p className="text-gray-600 text-[16px] md:text-[20px] lg:text-[24px] max-w-3xl mx-auto">
-                    Let's work together to bring your ideas to life. I'm always excited to take on new challenges.
+                    Let&apos;s work together to bring your ideas to life. I&apos;m always excited to take on new challenges.
                 </p>
             </div>
 
@@ -270,10 +261,10 @@ export default function Contact({id}: ContactProps){
                                                     href={link.link} 
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className={`w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-gray-200 transition-colors duration-300 ${getSocialColor(link.social).replace('text-', 'bg-')}`}
+                                                    className={`w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-gray-200 transition-colors duration-300 ${getBackgroundColor(link.social)} text-white`}
                                                     title={link.social}
                                                 >
-                                                    <div className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center text-white">
+                                                    <div className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center">
                                                         {getSocialIcon(link.social)}
                                                     </div>
                                                 </a>

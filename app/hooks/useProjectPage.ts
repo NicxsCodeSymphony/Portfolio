@@ -9,7 +9,7 @@ interface ProjectData {
         image_url: string;
         github_url: string;
         project_url?: string;
-        technologies: any;
+        technologies: string[]; // <-- fix here
         created_at: string;
         updated_at: string;
     }

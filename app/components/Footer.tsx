@@ -5,21 +5,36 @@ import { useState } from 'react';
 import { useAboutPage } from '../hooks/useAboutPage';
 import { getSocialIcon, getSocialColor } from './SocialIcons';
 
+// Example interfaces (adjust to your actual data)
+interface Stat {
+  email: string;
+  contact: string;
+  location: string;
+  availability: string;
+  client_count: number;
+  project_completed: number;
+  work_stats: number;
+}
+
+interface Link {
+  social: string;
+  link: string;
+}
+
 export default function Footer() {
-  const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { data, loading, error } = useAboutPage();
 
-  const statsRaw = data?.stats ? Object.values(data.stats)[0] as any : null;
-  const linksRaw = data?.links ? Object.values(data.links) as any[] : [];
+  const statsRaw = data?.stats ? Object.values(data.stats)[0] as Stat : null;
+  const linksRaw = data?.links ? Object.values(data.links) as Link[] : [];
 
-  const socialLinks = linksRaw?.map((link: any) => ({
+  const socialLinks = linksRaw?.map((link: Link) => ({
     name: link.social,
     icon: getSocialIcon(link.social),
     url: link.link,
-    color: `hover:${getSocialColor(link.social)}`
+    color: `${getSocialColor(link.social)}`
   })) || [];
 
   const navigationLinks = [
@@ -81,7 +96,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-[#286F6E] mb-3 sm:mb-4">{statsRaw?.name || 'Edisan Nico'}</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#286F6E] mb-3 sm:mb-4">{'Edisan Nico'}</h3>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
               Full-stack developer passionate about creating innovative solutions. 
               Specializing in modern web technologies and user experience.
@@ -94,8 +109,6 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`text-gray-400 transition-all duration-300 ${social.color} p-2 sm:p-2.5 md:p-3 rounded-full hover:bg-gray-800 hover:shadow-lg`}
-                  onMouseEnter={() => setHoveredSocial(social.name)}
-                  onMouseLeave={() => setHoveredSocial(null)}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -235,7 +248,7 @@ export default function Footer() {
               whileHover={{ color: '#286F6E' }}
               transition={{ duration: 0.3 }}
             >
-              © {new Date().getFullYear()} {statsRaw?.name || 'Edisan Nico'}. All rights reserved.
+              © {new Date().getFullYear()} {'Edisan Nico'}. All rights reserved.
             </motion.p>
           </div>
         </motion.div>

@@ -121,7 +121,7 @@ export default function Testimonial({id}: TestimonialProps){
                                         ))}
                                     </div>
                                     <p className="text-[14px] md:text-[16px] lg:text-[18px] text-gray-700 leading-relaxed mb-6 italic">
-                                        "{testimonial.testimony}"
+                                        &quot;{testimonial.testimony}&quot;
                                     </p>
                                 </div>
                                 <div className="z-10">

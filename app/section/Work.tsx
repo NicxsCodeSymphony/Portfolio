@@ -68,17 +68,6 @@ export default function Work({id}: WorkProps){
         }
     };
 
-    const timelineVariants = {
-        hidden: { 
-            scaleY: 0,
-            opacity: 0
-        },
-        visible: { 
-            scaleY: 1,
-            opacity: 1
-        }
-    };
-
     const dotVariants = {
         hidden: { 
             scale: 0,

@@ -723,10 +723,10 @@ function About({ id }) {
             className: "max-w-7xl mx-auto",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "hidden lg:block text-center mb-12 px-60",
+                    className: "hidden lg:block text-center mb-8 md:mb-10 lg:mb-12 px-4 md:px-32 lg:px-60",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "text-[#286F6E] text-lg font-medium mb-4",
+                            className: "text-[#286F6E] text-base md:text-lg font-medium mb-2 md:mb-4",
                             children: aboutPageRaw?.subTitle
                         }, void 0, false, {
                             fileName: "[project]/app/section/About.tsx",
@@ -734,7 +734,7 @@ function About({ id }) {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                            className: "text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight",
+                            className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight",
                             dangerouslySetInnerHTML: {
                                 __html: highlightTechKeywords(aboutPageRaw?.title || 'A Passionate Developer Who Loves to Code')
                             }
@@ -750,17 +750,17 @@ function About({ id }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid lg:grid-cols-2 gap-4 lg:gap-6 items-center min-h-[600px]",
+                    className: "grid lg:grid-cols-2 gap-2 md:gap-4 lg:gap-6 items-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col items-center lg:items-start space-y-6 order-1 lg:order-1",
+                            className: "flex flex-col items-center lg:items-start space-y-4 md:space-y-6 order-1 lg:order-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "relative w-full max-w-md mx-auto lg:mx-0 h-[600px]",
+                                className: "relative w-full max-w-xs md:max-w-sm lg:max-w-md mx-auto lg:mx-0 h-[320px] md:h-[420px] lg:h-[600px]",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "relative w-full h-full",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-0 right-0 w-80 h-96 bg-gray-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20",
+                                            className: "absolute top-0 right-0 w-48 md:w-64 lg:w-80 h-60 md:h-80 lg:h-96 bg-gray-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                 src: getGoogleDriveImageUrl(aboutPageRaw?.image),
                                                 alt: "Profile",
@@ -778,7 +778,7 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-8 left-0 w-64 h-80 bg-gradient-to-br from-[#286F6E] to-[#1a4a49] rounded-3xl overflow-hidden shadow-xl border-4 border-white z-10",
+                                            className: "absolute bottom-4 md:bottom-8 left-0 w-40 md:w-52 lg:w-64 h-48 md:h-64 lg:h-80 bg-gradient-to-br from-[#286F6E] to-[#1a4a49] rounded-3xl overflow-hidden shadow-xl border-4 border-white",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                     src: getGoogleDriveImageUrl(aboutPageRaw?.image),
@@ -805,9 +805,9 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-4 right-4 w-16 h-16 bg-[#286F6E] rounded-full shadow-lg z-30 flex items-center justify-center",
+                                            className: "absolute top-4 right-4 w-10 md:w-12 lg:w-16 h-10 md:h-12 lg:h-16 bg-[#286F6E] rounded-full shadow-lg flex items-center justify-center",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-8 h-8 text-white",
+                                                className: "w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white",
                                                 fill: "currentColor",
                                                 viewBox: "0 0 24 24",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -828,16 +828,16 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-52 right-2 w-8 h-8 bg-blue-500 rounded-full shadow-lg z-30"
+                                            className: "absolute bottom-32 md:bottom-52 right-2 w-6 md:w-8 lg:w-8 h-6 md:h-8 lg:h-8 bg-blue-500 rounded-full shadow-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
                                             lineNumber: 143,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-36 left-8 w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-100 z-30",
+                                            className: "absolute top-24 md:top-36 left-4 md:left-8 w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-100",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-10 h-10 text-[#286F6E]",
+                                                className: "w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-[#286F6E]",
                                                 fill: "currentColor",
                                                 viewBox: "0 0 24 24",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -858,12 +858,12 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-4 right-12 bg-gray-900 text-white rounded-2xl p-6 shadow-2xl z-30 border-4 border-white",
+                                            className: "absolute bottom-2 md:bottom-4 right-4 md:right-12 bg-gray-900 text-white rounded-2xl p-3 md:p-4 lg:p-6 shadow-2xl border-4 border-white",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "text-center",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-3xl font-bold text-white",
+                                                        className: "text-lg md:text-2xl lg:text-3xl font-bold text-white",
                                                         children: experienceYears
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/section/About.tsx",
@@ -871,13 +871,13 @@ function About({ id }) {
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-sm font-medium text-gray-300",
+                                                        className: "text-xs md:text-sm lg:text-base font-medium text-gray-300",
                                                         children: [
                                                             "Successful",
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                                 fileName: "[project]/app/section/About.tsx",
                                                                 lineNumber: 154,
-                                                                columnNumber: 82
+                                                                columnNumber: 106
                                                             }, this),
                                                             "Years"
                                                         ]
@@ -898,28 +898,28 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-0 left-24 w-24 h-3 bg-[#286F6E] rounded-full shadow-lg z-15"
+                                            className: "absolute bottom-0 left-10 md:left-16 lg:left-24 w-12 md:w-16 lg:w-24 h-2 md:h-3 bg-[#286F6E] rounded-full shadow-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
                                             lineNumber: 158,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-72 right-16 w-6 h-6 border-4 border-[#286F6E] rounded-full z-25"
+                                            className: "absolute top-48 md:top-72 right-8 md:right-16 w-4 md:w-6 h-4 md:h-6 border-2 md:border-4 border-[#286F6E] rounded-full"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
                                             lineNumber: 160,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-14 left-4 bg-white rounded-2xl p-4 shadow-xl border border-gray-200 z-35 transform -rotate-3",
+                                            className: "absolute bottom-8 md:bottom-14 left-2 md:left-4 bg-white rounded-2xl p-2 md:p-3 lg:p-4 shadow-xl border border-gray-200 transform -rotate-3",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center space-x-3",
+                                                className: "flex items-center space-x-2 md:space-x-3",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-8 h-8 bg-green-500 rounded-full flex items-center justify-center",
+                                                        className: "w-5 md:w-7 h-5 md:h-7 bg-green-500 rounded-full flex items-center justify-center",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                            className: "w-4 h-4 text-white",
+                                                            className: "w-3 h-3 md:w-4 md:h-4 text-white",
                                                             fill: "currentColor",
                                                             viewBox: "0 0 24 24",
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -942,7 +942,7 @@ function About({ id }) {
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "text-sm font-semibold text-gray-900",
+                                                                className: "text-xs md:text-sm font-semibold text-gray-900",
                                                                 children: "Available"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/section/About.tsx",
@@ -950,7 +950,7 @@ function About({ id }) {
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "text-xs text-gray-500",
+                                                                className: "text-[10px] md:text-xs text-gray-500",
                                                                 children: "For Projects"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/section/About.tsx",
@@ -975,11 +975,11 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-28 right-32 grid grid-cols-3 gap-2 z-5",
+                                            className: "absolute top-20 md:top-28 right-16 md:right-32 grid grid-cols-3 gap-1 md:gap-2",
                                             children: [
                                                 ...Array(9)
                                             ].map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "w-2 h-2 bg-[#286F6E] rounded-full opacity-30"
+                                                    className: "w-1.5 md:w-2 h-1.5 md:h-2 bg-[#286F6E] rounded-full opacity-30"
                                                 }, i, false, {
                                                     fileName: "[project]/app/section/About.tsx",
                                                     lineNumber: 178,
@@ -991,16 +991,16 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-10 left-12 w-10 h-10 bg-purple-500 rounded-full shadow-lg z-30"
+                                            className: "absolute top-24 md:top-10 left-6 md:left-12 w-6 md:w-8 lg:w-10 h-6 md:h-8 lg:h-10 bg-purple-500 rounded-full shadow-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
                                             lineNumber: 182,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute bottom-29 right-32 w-14 h-14 bg-yellow-400 rounded-2xl shadow-lg z-30 rotate-12 flex items-center justify-center",
+                                            className: "absolute bottom-20 md:bottom-29 right-16 md:right-32 w-8 md:w-10 lg:w-14 h-8 md:h-10 lg:h-14 bg-yellow-400 rounded-2xl shadow-lg rotate-12 flex items-center justify-center",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                                                className: "w-6 h-6 text-white",
+                                                className: "w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white",
                                                 fill: "currentColor",
                                                 viewBox: "0 0 24 24",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1021,7 +1021,7 @@ function About({ id }) {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute top-80 left-8 w-4 h-4 bg-red-500 rounded-full shadow-lg z-30"
+                                            className: "absolute top-64 md:top-80 left-4 md:left-8 w-2 md:w-3 h-2 md:h-3 bg-red-500 rounded-full shadow-lg"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
                                             lineNumber: 190,
@@ -1044,10 +1044,10 @@ function About({ id }) {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-left mb-5 order-2 lg:hidden mt-10",
+                            className: "text-left mb-3 md:mb-5 order-2 lg:hidden mt-6 md:mt-10",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "text-[#286F6E] text-lg font-medium mb-4",
+                                    className: "text-[#286F6E] text-base md:text-lg font-medium mb-2 md:mb-4",
                                     children: aboutPageRaw?.subTitle
                                 }, void 0, false, {
                                     fileName: "[project]/app/section/About.tsx",
@@ -1055,7 +1055,7 @@ function About({ id }) {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                    className: "text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight",
+                                    className: "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight",
                                     dangerouslySetInnerHTML: {
                                         __html: highlightTechKeywords(aboutPageRaw?.title || 'A Passionate Developer Who Loves to Code')
                                     }
@@ -1071,12 +1071,12 @@ function About({ id }) {
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col justify-center space-y-8 order-3 lg:order-2",
+                            className: "flex flex-col justify-center space-y-4 md:space-y-6 order-3 lg:order-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                            className: "text-xl font-semibold mb-4 text-gray-900",
+                                            className: "text-lg md:text-xl font-semibold mb-2 md:mb-4 text-gray-900",
                                             children: "My Bio"
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
@@ -1084,7 +1084,7 @@ function About({ id }) {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-600 text-lg leading-relaxed",
+                                            className: "text-gray-600 text-sm md:text-lg leading-relaxed",
                                             children: aboutPageRaw?.description || 'I am a passionate full-stack developer with expertise in modern web technologies. I love creating innovative solutions and bringing ideas to life through clean, efficient code.'
                                         }, void 0, false, {
                                             fileName: "[project]/app/section/About.tsx",
@@ -1102,13 +1102,13 @@ function About({ id }) {
                                         className: "grid grid-cols-1 md:grid-cols-2 gap-0 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden",
                                         children: personalInfo.map((info, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: `
-                      group p-4 md:p-6 transition-all duration-300 hover:bg-gray-50 hover:shadow-md cursor-pointer
+                      group p-3 md:p-4 lg:p-6 transition-all duration-300 hover:bg-gray-50 hover:shadow-md cursor-pointer
                       ${index % 2 === 0 && 'md:border-r border-gray-200'}
                       ${index < personalInfo.length - 1 && 'border-b md:border-b-0 border-gray-200 md:border-b-0'}
                     `,
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-lg md:text-xl font-semibold text-gray-900 mb-1 md:mb-2 group-hover:text-[#286F6E] transition-colors duration-300",
+                                                        className: "text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-2 group-hover:text-[#286F6E] transition-colors duration-300",
                                                         children: info.value
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/section/About.tsx",
@@ -1116,7 +1116,7 @@ function About({ id }) {
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wide",
+                                                        className: "text-[10px] md:text-xs font-medium text-gray-500 uppercase tracking-wide",
                                                         children: info.label
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/section/About.tsx",
@@ -1144,7 +1144,7 @@ function About({ id }) {
                                         href: aboutPageRaw?.cv_link || '#',
                                         target: "_blank",
                                         rel: "noopener noreferrer",
-                                        className: "inline-block bg-[#286F6E] text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#00c299] transition-colors duration-300 shadow-lg",
+                                        className: "inline-block bg-[#286F6E] text-white px-5 md:px-8 py-2 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-[#00c299] transition-colors duration-300 shadow-lg",
                                         children: "Download CV"
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1169,15 +1169,15 @@ function About({ id }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "mt-20",
+                    className: "mt-10 md:mt-16 lg:mt-20",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-2 md:grid-cols-4 gap-6",
+                        className: "grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
+                                className: "bg-white rounded-2xl p-4 md:p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-4xl font-bold text-[#286F6E] mb-2",
+                                        className: "text-2xl md:text-4xl font-bold text-[#286F6E] mb-1 md:mb-2",
                                         children: statsRaw?.project_completed || '15'
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1185,7 +1185,7 @@ function About({ id }) {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-600 text-sm font-medium uppercase tracking-wide",
+                                        className: "text-gray-600 text-xs md:text-sm font-medium uppercase tracking-wide",
                                         children: "Projects Completed"
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1199,10 +1199,10 @@ function About({ id }) {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
+                                className: "bg-white rounded-2xl p-4 md:p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-4xl font-bold text-[#286F6E] mb-2",
+                                        className: "text-2xl md:text-4xl font-bold text-[#286F6E] mb-1 md:mb-2",
                                         children: statsRaw?.client_count || '16'
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1210,7 +1210,7 @@ function About({ id }) {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-600 text-sm font-medium uppercase tracking-wide",
+                                        className: "text-gray-600 text-xs md:text-sm font-medium uppercase tracking-wide",
                                         children: "Happy Clients"
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1224,10 +1224,10 @@ function About({ id }) {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
+                                className: "bg-white rounded-2xl p-4 md:p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-4xl font-bold text-[#286F6E] mb-2",
+                                        className: "text-2xl md:text-4xl font-bold text-[#286F6E] mb-1 md:mb-2",
                                         children: statsRaw?.work_stats || '3'
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1235,7 +1235,7 @@ function About({ id }) {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-600 text-sm font-medium uppercase tracking-wide",
+                                        className: "text-gray-600 text-xs md:text-sm font-medium uppercase tracking-wide",
                                         children: "Work Experience"
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1249,10 +1249,10 @@ function About({ id }) {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
+                                className: "bg-white rounded-2xl p-4 md:p-8 text-center shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-4xl font-bold text-[#286F6E] mb-2",
+                                        className: "text-2xl md:text-4xl font-bold text-[#286F6E] mb-1 md:mb-2",
                                         children: experienceYears
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -1260,7 +1260,7 @@ function About({ id }) {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-gray-600 text-sm font-medium uppercase tracking-wide",
+                                        className: "text-gray-600 text-xs md:text-sm font-medium uppercase tracking-wide",
                                         children: "Years Experience"
                                     }, void 0, false, {
                                         fileName: "[project]/app/section/About.tsx",
@@ -3279,6 +3279,7 @@ var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
     "SocialIcons": (()=>SocialIcons),
+    "getBackgroundColor": (()=>getBackgroundColor),
     "getSocialColor": (()=>getSocialColor),
     "getSocialIcon": (()=>getSocialIcon)
 });
@@ -3462,16 +3463,28 @@ const getSocialIcon = (socialName)=>{
 };
 const getSocialColor = (socialName)=>{
     const name = socialName.toLowerCase();
-    if (name.includes('github')) return 'text-gray-900';
-    if (name.includes('linkedin')) return 'text-blue-700';
-    if (name.includes('twitter')) return 'text-blue-700';
-    if (name.includes('facebook')) return 'text-blue-700';
-    if (name.includes('instagram')) return 'text-pink-500';
-    if (name.includes('upwork')) return 'text-green-500';
-    if (name.includes('jobstreet')) return 'text-blue-700';
-    if (name.includes('bossjob') || name.includes('boss job')) return 'text-orange-500';
-    if (name.includes('indeed')) return 'text-blue-800';
-    return 'text-blue-700';
+    if (name.includes('github')) return 'hover:text-gray-900';
+    if (name.includes('linkedin')) return 'hover:text-blue-700';
+    if (name.includes('twitter')) return 'hover:text-blue-700';
+    if (name.includes('facebook')) return 'hover:text-blue-700';
+    if (name.includes('instagram')) return 'hover:text-pink-500';
+    if (name.includes('upwork')) return 'hover:text-green-500';
+    if (name.includes('jobstreet')) return 'hover:text-blue-700';
+    if (name.includes('bossjob') || name.includes('boss job')) return 'hover:text-orange-500';
+    if (name.includes('indeed')) return 'hover:text-blue-800';
+    return 'hover:text-blue-700';
+};
+const getBackgroundColor = (socialName)=>{
+    const name = socialName.toLowerCase();
+    if (name.includes('github')) return 'bg-gray-900';
+    if (name.includes('linkedin')) return 'bg-blue-700';
+    if (name.includes('twitter')) return 'bg-blue-700';
+    if (name.includes('facebook')) return 'bg-blue-700';
+    if (name.includes('instagram')) return 'bg-pink-500';
+    if (name.includes('upwork')) return 'bg-green-500';
+    if (name.includes('jobstreet')) return 'bg-blue-700';
+    if (name.includes('bossjob') || name.includes('boss job')) return 'bg-orange-500';
+    if (name.includes('indeed')) return 'bg-blue-800';
 };
 }}),
 "[project]/app/section/Contact.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
@@ -4072,7 +4085,7 @@ function Contact({ id }) {
                                                         href: link.link,
                                                         target: "_blank",
                                                         rel: "noopener noreferrer",
-                                                        className: `w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-gray-200 transition-colors duration-300 ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$SocialIcons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSocialColor"])(link.social).replace('text-', 'bg-')}`,
+                                                        className: `w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full border border-gray-200 transition-colors duration-300 ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$SocialIcons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getBackgroundColor"])(link.social)}`,
                                                         title: link.social,
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "w-6 h-6 md:w-7 md:h-7 flex items-center justify-center text-white",
@@ -4567,7 +4580,7 @@ function Footer() {
             name: link.social,
             icon: (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$SocialIcons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSocialIcon"])(link.social),
             url: link.link,
-            color: `hover:${(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$SocialIcons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSocialColor"])(link.social)}`
+            color: `${(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$SocialIcons$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getSocialColor"])(link.social)}`
         })) || [];
     const navigationLinks = [
         {

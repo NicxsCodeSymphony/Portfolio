@@ -33,7 +33,7 @@ export class TestimonialsService {
     }
 
     // Create new testimonials data
-    static async createTestimonial(data: any): Promise<any> {
+    static async createTestimonial(data: TestimonialsData[string]): Promise<TestimonialsData[string]> {
         try {
             const response = await axios.post(this.baseURL, data);
             return response.data;
@@ -44,7 +44,7 @@ export class TestimonialsService {
     }
 
     // Update testimonials data
-    static async updateTestimonial(id: string, data: any): Promise<any> {
+    static async updateTestimonial(id: string, data: TestimonialsData[string]): Promise<TestimonialsData[string]> {
         try {
             const response = await axios.put(`${this.baseURL}/${id}`, data);
             return response.data;
@@ -55,7 +55,7 @@ export class TestimonialsService {
     }
 
     // Delete testimonials data
-    static async deleteTestimonial(id: string): Promise<any> {
+    static async deleteTestimonial(id: string): Promise<{ success: boolean; message?: string }> {
         try {
             const response = await axios.delete(`${this.baseURL}/${id}`);
             return response.data;

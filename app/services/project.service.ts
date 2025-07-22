@@ -10,7 +10,7 @@ interface ProjectData {
         description: string;
         image_url: string;
         github_url: string;
-        technologies: any;
+        technologies: string[];
         created_at: string;
         updated_at: string;
     }
@@ -35,7 +35,7 @@ export class ProjectService {
     }
 
     // Create new project data
-    static async createProject(data: any): Promise<any> {
+    static async createProject(data: ProjectData[string]): Promise<ProjectData[string]> {
         try {
             const response = await axios.post(this.baseURL, data);
             return response.data;
@@ -46,7 +46,7 @@ export class ProjectService {
     }
 
     // Update project data
-    static async updateProject(id: string, data: any): Promise<any> {
+    static async updateProject(id: string, data: ProjectData[string]): Promise<ProjectData[string]> {
         try {
             const response = await axios.put(`${this.baseURL}/${id}`, data);
             return response.data;
@@ -57,7 +57,7 @@ export class ProjectService {
     }
 
     // Delete project data
-    static async deleteProject(id: string): Promise<any> {
+    static async deleteProject(id: string): Promise<{ success: boolean; message?: string }> {
         try {
             const response = await axios.delete(`${this.baseURL}/${id}`);
             return response.data;

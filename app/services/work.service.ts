@@ -28,7 +28,7 @@ export class WorkService {
     }
 
     // Create new work data
-    static async createWork(data: any): Promise<any> {
+    static async createWork(data: WorkData[string]): Promise<WorkData[string]> {
         try {
             const response = await axios.post(this.baseURL, data);
             return response.data;
@@ -39,7 +39,7 @@ export class WorkService {
     }
 
     // Update work data
-    static async updateWork(id: string, data: any): Promise<any> {
+    static async updateWork(id: string, data: WorkData[string]): Promise<WorkData[string]> {
         try {
             const response = await axios.put(`${this.baseURL}/${id}`, data);
             return response.data;
@@ -50,7 +50,7 @@ export class WorkService {
     }
 
     // Delete work data
-    static async deleteWork(id: string): Promise<any> {
+    static async deleteWork(id: string): Promise<{ success: boolean; message?: string }> {
         try {
             const response = await axios.delete(`${this.baseURL}/${id}`);
             return response.data;

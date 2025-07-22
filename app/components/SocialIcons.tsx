@@ -80,15 +80,29 @@ export const getSocialIcon = (socialName: string) => {
 export const getSocialColor = (socialName: string) => {
   const name = socialName.toLowerCase();
   
-  if (name.includes('github')) return 'text-gray-900';
-  if (name.includes('linkedin')) return 'text-blue-700';
-  if (name.includes('twitter')) return 'text-blue-700';
-  if (name.includes('facebook')) return 'text-blue-700';
-  if (name.includes('instagram')) return 'text-pink-500';
-  if (name.includes('upwork')) return 'text-green-500';
-  if (name.includes('jobstreet')) return 'text-blue-700';
-  if (name.includes('bossjob') || name.includes('boss job')) return 'text-orange-500';
-  if (name.includes('indeed')) return 'text-blue-800';
+  if (name.includes('github')) return 'hover:text-gray-900';
+  if (name.includes('linkedin')) return 'hover:text-blue-700';
+  if (name.includes('twitter')) return 'hover:text-blue-700';
+  if (name.includes('facebook')) return 'hover:text-blue-700';
+  if (name.includes('instagram')) return 'hover:text-pink-500';
+  if (name.includes('upwork')) return 'hover:text-green-500';
+  if (name.includes('jobstreet')) return 'hover:text-blue-700';
+  if (name.includes('bossjob') || name.includes('boss job')) return 'hover:text-orange-500';
+  if (name.includes('indeed')) return 'hover:text-blue-800';
   
-  return 'text-blue-700';
+  return 'hover:text-blue-700';
 }; 
+
+export const getBackgroundColor = (socialName: string) => {
+  const name = socialName.toLowerCase();
+  
+  if (name.includes('github')) return 'bg-gray-900';
+  if (name.includes('linkedin')) return 'bg-blue-700';
+  if (name.includes('twitter')) return 'bg-blue-700';
+  if (name.includes('facebook')) return 'bg-blue-700';
+  if (name.includes('instagram')) return 'bg-pink-500';
+  if (name.includes('upwork')) return 'bg-green-500';
+  if (name.includes('jobstreet')) return 'bg-blue-700';
+  if (name.includes('bossjob') || name.includes('boss job')) return 'bg-orange-500';
+  if (name.includes('indeed')) return 'bg-blue-800';
+}

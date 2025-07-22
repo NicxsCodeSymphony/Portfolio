@@ -1,35 +1,8 @@
 import axios from 'axios';
+import type { AboutPageData } from '../interfaces/about.interface';
 
 // Define the base URL for your backend API
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-interface AboutPageData {
-    aboutPage: {
-        [id: string]: {
-            title: string;
-            subTitle: string;
-            description: string;
-            cv_link: string;
-        }
-    };
-    stats: {
-        [id: string]: {
-            availability: string;
-            client_count: number;
-            contact: string;
-            email: string;
-            location: string;
-            project_completed: number;
-            work_stats: number;
-        }
-    };
-    links: {
-        [id: string]: {
-            link: string;
-            social: string;
-        }
-    };
-}
 
 export class AboutPageService {
     // Note: This service fetches from multiple endpoints
@@ -56,7 +29,7 @@ export class AboutPageService {
     }
 
     // Create new about page data
-    static async createAboutPage(data: any): Promise<any> {
+    static async createAboutPage(data: AboutPageData['aboutPage'][string]): Promise<AboutPageData['aboutPage'][string]> {
         try {
             const response = await axios.post(`${API_BASE_URL}/aboutPage`, data);
             return response.data;
@@ -67,7 +40,7 @@ export class AboutPageService {
     }
 
     // Update about page data
-    static async updateAboutPage(id: string, data: any): Promise<any> {
+    static async updateAboutPage(id: string, data: AboutPageData['aboutPage'][string]): Promise<AboutPageData['aboutPage'][string]> {
         try {
             const response = await axios.put(`${API_BASE_URL}/aboutPage/${id}`, data);
             return response.data;
@@ -78,7 +51,7 @@ export class AboutPageService {
     }
 
     // Delete about page data
-    static async deleteAboutPage(id: string): Promise<any> {
+    static async deleteAboutPage(id: string): Promise<{ success: boolean; message?: string }> {
         try {
             const response = await axios.delete(`${API_BASE_URL}/aboutPage/${id}`);
             return response.data;

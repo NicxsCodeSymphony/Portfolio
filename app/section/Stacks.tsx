@@ -6,6 +6,7 @@ import * as DiIcons from 'react-icons/di';
 import * as IoIcons from 'react-icons/io';
 import * as TbIcons from 'react-icons/tb';
 import { useStacks, getStackColor } from '../utils/stack';
+import React from 'react';
 
 type StacksProps = {id?: string}
 
@@ -30,7 +31,7 @@ function findIconComponent(stack: string) {
     for (const candidate of candidates) {
       for (const prefix of ['Fa', 'Si', 'Di', 'Io', 'Tb']) {
         const iconName = prefix + candidate;
-        const iconSet = icons as Record<string, React.ComponentType<any>>;
+        const iconSet = icons as Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>;
         if (iconSet[iconName]) {
           return iconSet[iconName];
         }
@@ -38,16 +39,6 @@ function findIconComponent(stack: string) {
     }
   }
   return null;
-}
-
-// Helper to normalize stack names
-function normalizeStackName(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/\s+/g, '')
-    .replace(/\.js$/, 'js')
-    .replace(/\./g, '')
-    .replace(/-/g, '');
 }
 
 
@@ -79,7 +70,6 @@ export default function Stacks({id}: StacksProps) {
             tabIndex={0}
           >
             {marqueeStacks.map((stack, idx) => {
-              const normalized = normalizeStackName(stack);
               const Icon = findIconComponent(stack);
               const color = getStackColor(stack);
               return (
@@ -91,9 +81,9 @@ export default function Stacks({id}: StacksProps) {
                 >
                   <span className="transition-shadow duration-200 group-hover:shadow-lg group-focus:shadow-lg rounded-full">
                     {Icon ? (
-                      <Icon title={stack} color={color} />
+                      <Icon color={color} />
                     ) : (
-                      <span className="">{stack}</span>
+                      <span className="">{stack.replace(/\"/g, '&quot;')}</span>
                     )}
                   </span>
                   <span className="text-xs md:text-sm mt-1 capitalize select-none">
