@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <Navbar />
       <div>
-        <Hero id="hero" />
+        <Hero />
         <Stacks id="stacks" />
         <ScrollAnimation delay={0.1}>
           <About id="about" />
