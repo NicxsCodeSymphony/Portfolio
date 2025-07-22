@@ -48,16 +48,14 @@ const Hero = () => {
               <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight 2xl:text-[3rem]">
                   I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EEC052] to-[#FFD600] animate-gradient">Nico Edisan</span>,<br />
-                  <span className="inline-block hover:scale-105 transition-transform duration-300">Web/App Developer</span><br />
+                  <span className="inline-block hover:scale-105 transition-transform duration-300">Web & App Developer</span><br />
                   <span className="text-gray-700">Based in the Philippines.</span>
                 </h1>
               </div>
 
               <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <p className="text-gray-600 text-sm sm:text-base lg:text-lg xl:text-base 2xl:text-xl leading-relaxed max-w-2xl">
-                I&apos;m an aspiring IT professional who loves building user-friendly websites and applications. I combine technical skills with creative problem-solving to create solutions that work smoothly and look great.
-
-When I&apos;m not coding, I enjoy making music. To me, writing code and composing music are similar—they both require precision, creativity, and a good sense of patterns to create something meaningful.
+                I&apos;m a dedicated developer who enjoys creating responsive websites and mobile apps that are both easy to use and visually appealing. As a recent graduate, I&apos;m excited to turn ideas into real projects using clean code and practical design. I&apos;m ready to build something great with you.
                 </p>
               </div>
 
@@ -97,8 +95,8 @@ When I&apos;m not coding, I enjoy making music. To me, writing code and composin
 
               {/* Profile Area Placeholder */}
               <div className={`absolute inset-0 flex items-center justify-center transition-all duration-1500 delay-1000 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
-                <div className="w-[28vw] h-[50vh] max-w-[320px] max-h-[400px] xl:w-[48vw] xl:h-[80vh] xl:max-w-[520px] xl:max-h-[720px] rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                  <Image src={Nico} alt="Nico Edisan" fill className="object-cover rounded-2xl" />
+                <div className="w-[28vw] h-[100vh] max-w-[320px] max-h-[400px] xl:w-[48vw] xl:h-[80vh] xl:max-w-[520px] xl:max-h-[720px] rounded-2xl flex items-center justify-center absolute top-[20px] right-[85px] overflow-hidden group">
+                  <Image src={Nico} alt="Nico Edisan" fill className="w-full h-full rounded-2xl" />
                 </div>
               </div>
 
@@ -134,7 +132,7 @@ When I&apos;m not coding, I enjoy making music. To me, writing code and composin
               </div>
 
               {/* Interactive Music Button */}
-              <div className={`absolute top-8 left-8 sm:top-12 sm:left-12 transition-all duration-1000 delay-1800 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}>
+              <div className={`absolute sm:top-32 left-8 3xl:top-32 3xl:left-12 transition-all duration-1000 delay-1800 ${isVisible ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}>
                 <div className="relative">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center shadow-lg">
                     <button

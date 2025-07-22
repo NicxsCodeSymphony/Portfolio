@@ -5,6 +5,8 @@ interface AboutPageData{
             subTitle: string;
             description: string;
             cv_link: string;
+            image: string;
+            name: string;
         }
     };
     stats: {
@@ -16,6 +18,7 @@ interface AboutPageData{
             location: string;
             project_completed: number;
             work_stats: number;
+            name: string;
         }
     };
     links: {
