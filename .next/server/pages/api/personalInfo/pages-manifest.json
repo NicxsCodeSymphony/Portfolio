@@ -1,4 +1,3 @@
 {
-  "/api/files": "pages/api/files.js",
   "/api/personalInfo": "pages/api/personalInfo.js"
 }
