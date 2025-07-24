@@ -19,8 +19,8 @@ export type HeroPageWithNested = Omit<HeroPage, 'uid'> & {
     image2: string;
     image3: string;
   };
-  awards: Record<string, any>;
-  files: Record<string, any>;
+  awards: Record<string, unknown>;
+  files: Record<string, unknown>;
 };
 
 export const useHeroPage = () => {
@@ -39,8 +39,12 @@ export const useHeroPage = () => {
         const cleaned: HeroPageWithNested[] = Object.values(rawData);
 
         setData(cleaned);
-      } catch (err: any) {
-        setError(err.message || "Unknown error");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Unknown error");
+        }
       } finally {
         setLoading(false);
       }

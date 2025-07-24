@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/lib/firebaseAdmin';
 import { verifyIdToken } from '@/lib/verifyToken';
-import { HeroPage } from '@/types/HeroPage';
+import { AboutPage } from '@/types/About';
 import { PersonalInfo } from '@/types/PersonalInfo';
-import { Awards } from '@/types/Awards';
 
 const now = () => new Date().toISOString();
 
@@ -35,9 +34,9 @@ const authenticate = async (req: NextApiRequest, res: NextApiResponse): Promise<
 const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     // Fetch heroPage
-    const heroSnapshot = await db.ref('heroPage').once('value');
-    const heroData = heroSnapshot.val() as Record<string, Omit<HeroPage, 'uid'>> | null;
-    const heroPage: HeroPage[] = heroData
+    const heroSnapshot = await db.ref('aboutPage').once('value');
+    const heroData = heroSnapshot.val() as Record<string, Omit<AboutPage, 'uid'>> | null;
+    const AboutPage: AboutPage[] = heroData
       ? Object.entries(heroData).map(([uid, data]) => ({ uid, ...data }))
       : [];
 
@@ -46,16 +45,6 @@ const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
     const personalData = personalSnapshot.val() as Record<string, PersonalInfo> | null;
     const personalInfo = personalData ? Object.values(personalData)[0] : {};
 
-    // Fetch awards and map to indexed object
-    const awardsSnapshot = await db.ref('awards').once('value');
-    const awardsData = awardsSnapshot.val() as Record<string, Awards> | null;
-    const awards =
-      awardsData
-        ? Object.values(awardsData).reduce((acc, curr, index) => {
-            acc[index] = curr;
-            return acc;
-          }, {} as Record<number, Awards>)
-        : {};
 
     // Fetch files and map to indexed object
     const filesSnapshot = await db.ref('files').once('value');
@@ -69,10 +58,9 @@ const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
         : {};
 
     // Attach to each heroPage
-    const heroPageWithNested = heroPage.map(item => ({
+    const heroPageWithNested = AboutPage.map(item => ({
       ...item,
       personalInfo,
-      awards,
       files,
     }));
 

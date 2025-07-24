@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/edisa/Desktop/Personal/Portfolio/frontend/app/page.tsx"],"sourcesContent":["import Hero from \"./sections/Hero\";\nimport Navbar from \"./components/Navbar\";\n\nexport default function Home(){\n  return(\n    <main></main>\n  )\n}"],"names":[],"mappings":";;;;;AAGe,SAAS;IACtB,qBACE,8OAAC;;;;;AAEL","debugId":null}}]
-}
