@@ -1,4 +1,4 @@
 {
-  "/api/heroPage": "pages/api/heroPage.js",
-  "/api/personalInfo": "pages/api/personalInfo.js"
+  "/api/aboutPage": "pages/api/aboutPage.js",
+  "/api/heroPage": "pages/api/heroPage.js"
 }

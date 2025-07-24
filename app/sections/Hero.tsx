@@ -14,9 +14,6 @@ const Hero = () => {
   const {data, loading, error} = useHeroPage()
 
   const heroData = data[0]
-  const personalData = heroData
-
-  console.log(personalData?.personalInfo.address);
 
   useEffect(() => {
     if(!loading && !error){

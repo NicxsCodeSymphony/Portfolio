@@ -39,8 +39,8 @@ export const useHeroPage = () => {
 
         setData(cleaned);
       } catch (err: unknown) {
-        if (err && typeof err === "object" && "message" in err) {
-          setError((err as { message: string }).message || "Unknown error");
+        if (err instanceof Error) {
+          setError(err.message);
         } else {
           setError("Unknown error");
         }
