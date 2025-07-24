@@ -4,12 +4,30 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Music, Square, Mail, ExternalLink } from 'lucide-react';
 import Nico from '../../assets/nico.png'
 import Image from 'next/image';
+import { useHeroPage } from '../hooks/useHeroPage';
 
 const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
-  
+
+  const {data, loading, error} = useHeroPage()
+
+  const heroData = data[0]
+  const personalData = heroData
+
+  console.log(personalData?.personalInfo.address);
+
+  useEffect(() => {
+    if(!loading && !error){
+      console.log('Fetched Hero page data: ', data)
+    }
+
+    if(error){
+      console.error('Error fetching hero data', error)
+    }
+  }, [data, loading, error])
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -41,26 +59,29 @@ const Hero = () => {
               <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <span className="inline-flex items-center bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm animate-pulse 2xl:text-base xl:text-sm">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-ping"></span>
-                  Hello There!
+                  {heroData?.sectionName}
                 </span>
               </div>
 
               <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-bold leading-tight 2xl:text-[3rem]">
-                  I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EEC052] to-[#FFD600] animate-gradient">Nico Edisan</span>,<br />
-                  <span className="inline-block hover:scale-105 transition-transform duration-300">Web & App Developer</span><br />
+                  I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EEC052] to-[#FFD600] animate-gradient">{heroData?.personalInfo?.name}</span>,<br />
+                  <span className="inline-block hover:scale-105 transition-transform duration-300">{heroData?.personalInfo?.position}</span><br />
                   <span className="text-gray-700">Based in the Philippines.</span>
                 </h1>
               </div>
 
               <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <p className="text-gray-600 text-sm sm:text-base lg:text-lg xl:text-base 2xl:text-xl leading-relaxed max-w-2xl">
-                I&apos;m a dedicated developer who enjoys creating responsive websites and mobile apps that are both easy to use and visually appealing. As a recent graduate, I&apos;m excited to turn ideas into real projects using clean code and practical design. I&apos;m ready to build something great with you.
+                {heroData?.description}
                 </p>
               </div>
 
               <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-1100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                <button className="group bg-gradient-to-r from-[#286F6E] to-[#1e5a59] hover:from-[#1e5a59] hover:to-[#286F6E] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center">
+                <button className="group bg-gradient-to-r from-[#286F6E] to-[#1e5a59] hover:from-[#1e5a59] hover:to-[#286F6E] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center" onClick={() => {
+  window.open(`https://drive.google.com/file/d/${heroData?.files[0]?.url}`, '_blank');
+}}
+>
                   <span>View my Resume</span>
                   <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
