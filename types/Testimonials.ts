@@ -1,4 +1,5 @@
 export interface Testimonials{
+  uid: string;
   name: string;
   position: string;
   company: string;
