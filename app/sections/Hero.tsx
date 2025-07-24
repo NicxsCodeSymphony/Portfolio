@@ -79,9 +79,9 @@ const Hero = () => {
 
               <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-1100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <button className="group bg-gradient-to-r from-[#286F6E] to-[#1e5a59] hover:from-[#1e5a59] hover:to-[#286F6E] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center justify-center" onClick={() => {
-  window.open(`https://drive.google.com/file/d/${heroData?.files[0]?.url}`, '_blank');
-}}
->
+                  const filesArray = heroData?.files ? Object.values(heroData.files) as { url: string }[] : undefined;
+                  window.open(`https://drive.google.com/file/d/${filesArray?.[0]?.url}`, '_blank');
+                }}>
                   <span>View my Resume</span>
                   <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
