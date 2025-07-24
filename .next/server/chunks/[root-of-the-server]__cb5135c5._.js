@@ -111,32 +111,27 @@ const authenticate = async (req, res)=>{
 };
 const handleGet = async (_req, res)=>{
     try {
-        // Fetch heroPage
         const heroSnapshot = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebaseAdmin$2e$ts__$5b$api$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].ref('heroPage').once('value');
         const heroData = heroSnapshot.val();
         const heroPage = heroData ? Object.entries(heroData).map(([uid, data])=>({
                 uid,
                 ...data
             })) : [];
-        // Fetch personalInfo (assumed only one record needed)
         const personalSnapshot = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebaseAdmin$2e$ts__$5b$api$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].ref('personalInfo').once('value');
         const personalData = personalSnapshot.val();
         const personalInfo = personalData ? Object.values(personalData)[0] : {};
-        // Fetch awards and map to indexed object
         const awardsSnapshot = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebaseAdmin$2e$ts__$5b$api$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].ref('awards').once('value');
         const awardsData = awardsSnapshot.val();
         const awards = awardsData ? Object.values(awardsData).reduce((acc, curr, index)=>{
             acc[index] = curr;
             return acc;
         }, {}) : {};
-        // Fetch files and map to indexed object
         const filesSnapshot = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$firebaseAdmin$2e$ts__$5b$api$5d$__$28$ecmascript$29$__$3c$locals$3e$__["db"].ref('files').once('value');
         const filesData = filesSnapshot.val();
         const files = filesData ? Object.values(filesData).reduce((acc, curr, index)=>{
             acc[index] = curr;
             return acc;
         }, {}) : {};
-        // Attach to each heroPage
         const heroPageWithNested = heroPage.map((item)=>({
                 ...item,
                 personalInfo,
@@ -151,7 +146,6 @@ const handleGet = async (_req, res)=>{
         });
     }
 };
-// POST Award
 const handlePost = async (req, res)=>{
     const { award, url } = req.body;
     if (!award || !url) {
@@ -184,7 +178,6 @@ const handlePost = async (req, res)=>{
         });
     }
 };
-// PUT Award
 const handlePut = async (req, res)=>{
     const { uid, award, url } = req.body;
     if (!uid || !award || !url) {
@@ -208,7 +201,6 @@ const handlePut = async (req, res)=>{
         });
     }
 };
-// DELETE Award
 const handleDelete = async (req, res)=>{
     const { uid } = req.query;
     if (!uid || typeof uid !== 'string') {

@@ -16,16 +16,6 @@ const Hero = () => {
   const heroData = data[0]
 
   useEffect(() => {
-    if(!loading && !error){
-      console.log('Fetched Hero page data: ', data)
-    }
-
-    if(error){
-      console.error('Error fetching hero data', error)
-    }
-  }, [data, loading, error])
-
-  useEffect(() => {
     setIsVisible(true);
   }, []);
 
