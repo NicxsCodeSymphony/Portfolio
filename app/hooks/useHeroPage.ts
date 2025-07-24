@@ -33,7 +33,6 @@ export const useHeroPage = () => {
       try {
         const res = await axios.get("/api/heroPage");
 
-        // If the data is an object with UIDs as keys
         const rawData = res.data;
 
         const cleaned: HeroPageWithNested[] = Object.values(rawData);
