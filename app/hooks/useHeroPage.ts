@@ -19,8 +19,8 @@ export type HeroPageWithNested = Omit<HeroPage, 'uid'> & {
     image2: string;
     image3: string;
   };
-  awards: Record<string, any>;
-  files: Record<string, any>;
+  awards: Record<string, unknown>;
+  files: Record<string, unknown>;
 };
 
 export const useHeroPage = () => {
@@ -33,14 +33,17 @@ export const useHeroPage = () => {
       try {
         const res = await axios.get("/api/heroPage");
 
-        // If the data is an object with UIDs as keys
         const rawData = res.data;
 
         const cleaned: HeroPageWithNested[] = Object.values(rawData);
 
         setData(cleaned);
-      } catch (err: any) {
-        setError(err.message || "Unknown error");
+      } catch (err: unknown) {
+        if (err && typeof err === "object" && "message" in err) {
+          setError((err as { message: string }).message || "Unknown error");
+        } else {
+          setError("Unknown error");
+        }
       } finally {
         setLoading(false);
       }
