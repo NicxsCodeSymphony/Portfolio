@@ -50,10 +50,10 @@ const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, start_date, end_date } = req.body;
+  const { title, company, description, start_date, end_date } = req.body;
 
-  if (!title || !start_date || !end_date) {
-    return res.status(400).json({ error: 'Missing required fields: title, start_date, end_date' });
+  if (!title || !company || !description || !start_date || !end_date) {
+    return res.status(400).json({ error: 'Missing required fields: title, company, description, start_date, end_date' });
   }
 
   try {
@@ -66,6 +66,8 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await ref.set({
       title,
+      company,
+      description,
       start_date,
       end_date,
       created_at: now(),
