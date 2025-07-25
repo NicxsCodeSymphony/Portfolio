@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useProjectPage } from '../hooks/useProjectPage'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 type ProjectProps = { id?: string }
 
@@ -165,9 +166,9 @@ export default function Project({ id }: ProjectProps) {
                         </div>
 
                         <div className="flex space-x-4">
-                            <button onClick={handlePrevPage} disabled={currentPage === 0 || isAnimating} className={`p-2 rounded-full ${currentPage === 0 ? 'bg-gray-200 text-gray-400' : 'bg-[#286F6E] text-white hover:bg-[#1e5a59]'}`}>←</button>
+                            <button onClick={handlePrevPage} disabled={currentPage === 0 || isAnimating} className={`p-2 rounded-full ${currentPage === 0 ? 'bg-gray-200 text-gray-400' : 'bg-[#286F6E] text-white hover:bg-[#1e5a59]'}`}><FaArrowLeft /></button>
                             <span className="text-sm">{currentPage + 1} of {totalPages}</span>
-                            <button onClick={handleNextPage} disabled={currentPage === totalPages - 1 || isAnimating} className={`p-2 rounded-full ${currentPage === totalPages - 1 ? 'bg-gray-200 text-gray-400' : 'bg-[#286F6E] text-white hover:bg-[#1e5a59]'}`}>→</button>
+                            <button onClick={handleNextPage} disabled={currentPage === totalPages - 1 || isAnimating} className={`p-2 rounded-full ${currentPage === totalPages - 1 ? 'bg-gray-200 text-gray-400' : 'bg-[#286F6E] text-white hover:bg-[#1e5a59]'}`}><FaArrowRight /></button>
                         </div>
                     </div>
                 )}

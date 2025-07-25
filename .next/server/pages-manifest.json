@@ -1,7 +1,4 @@
 {
-  "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
   "/api/aboutPage": "pages/api/aboutPage.js",
   "/api/contactPage": "pages/api/contactPage.js",
   "/api/heroPage": "pages/api/heroPage.js",
