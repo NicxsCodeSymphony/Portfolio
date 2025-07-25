@@ -7,8 +7,9 @@ export interface Projects{
   project_url: string;
   github_url: string;
   featured: string;
-  stacks: {
-    stack: string;
-    icon: string;
-  }
+  stacks: string[];
+  start_date: string;
+  end_date: string;
+  created_at: string;
+  updated_at: string;
 }

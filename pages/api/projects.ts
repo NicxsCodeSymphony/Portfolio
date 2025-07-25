@@ -3,6 +3,7 @@ import { db } from '@/lib/firebaseAdmin';
 import { verifyIdToken } from '@/lib/verifyToken';
 import type { Projects } from '@/types/Projects';
 
+
 const now = () => new Date().toISOString();
 
 const authenticate = async (req: NextApiRequest, res: NextApiResponse): Promise<boolean> => {
@@ -50,10 +51,24 @@ const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, url } = req.body;
+  const {
+    title,
+    type,
+    description,
+    github_url,
+    image_url,
+    project_url,
+    start_date,
+    end_date,
+    stacks
+  } = req.body;
 
-  if (!title || !url) {
-    return res.status(400).json({ error: 'Missing required fields: title and url' });
+  if (
+    !title || !type || !description || !start_date || !end_date || !stacks
+  ) {
+    return res.status(400).json({
+      error: 'Missing required fields: title, type, description, start_date, end_date, stacks'
+    });
   }
 
   try {
@@ -64,11 +79,22 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(500).json({ error: 'Failed to generate project ID' });
     }
 
+    // Convert stacks from object to array
+    const stacksArray = Object.values(stacks);
+
     await ref.set({
       title,
-      url,
+      type,
+      description,
+      github_url,
+      image_url,
+      project_url,
+      stacks: stacksArray,
+      start_date,
+      end_date,
+      featured: true,
       created_at: now(),
-      updated_at: now(),
+      updated_at: now()
     });
 
     return res.status(201).json({ message: 'Project added successfully', uid });

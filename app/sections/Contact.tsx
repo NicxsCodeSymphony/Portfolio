@@ -5,45 +5,17 @@ import { useContactPage } from '../hooks/useContactPage';
 import {
   FaEnvelope,
   FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaLinkedin,
-  FaGithub,
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaGlobe,
+  FaMapMarkerAlt
 } from 'react-icons/fa';
 import axios from 'axios';
+import Image from 'next/image';
+import type { SocialLinks } from '../../types/SocialLinks';
 
 type ContactProps = { id?: string };
 
 export default function Contact({ id }: ContactProps) {
   const { data, loading } = useContactPage();
   const statsData = data[0];
-
-  const iconMap = {
-    linkedin: { icon: <FaLinkedin />, color: 'bg-[#0077B5]', hoverColor: 'hover:bg-[#005885]' },
-    github: { icon: <FaGithub />, color: 'bg-[#333333]', hoverColor: 'hover:bg-[#1a1a1a]' },
-    facebook: { icon: <FaFacebookF />, color: 'bg-[#1877F2]', hoverColor: 'hover:bg-[#166FE5]' },
-    instagram: { icon: <FaInstagram />, color: 'bg-gradient-to-r from-[#E4405F] to-[#833AB4]', hoverColor: 'hover:from-[#D63384] hover:to-[#7209B7]' },
-    twitter: { icon: <FaTwitter />, color: 'bg-[#1DA1F2]', hoverColor: 'hover:bg-[#0d8bd9]' },
-    portfolio: { icon: <FaGlobe />, color: 'bg-[#286F6E]', hoverColor: 'hover:bg-[#1f5a5a]' },
-  };
-
-  type SocialType = keyof typeof iconMap;
-
-  const icons = statsData?.social
-    ? Object.values(statsData.social).map((social) => {
-        const type = (social.social?.toLowerCase() as SocialType) || 'portfolio';
-        return {
-          name: social.social,
-          url: social.link,
-          ...iconMap[type] || iconMap['portfolio'],
-        };
-      })
-    : [];
-
-    console.log(icons)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,24 +31,24 @@ export default function Contact({ id }: ContactProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const [submitting, setSubmitting] = useState<boolean>(false)
-  const [statusMessage, setStatusMessage] = useState<string | null>(null)
-  const [error, setError] = useState<boolean>(false)
-  
+  const [submitting, setSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [error, setError] = useState(false);
+
   const handleSubmit = async () => {
     setSubmitting(true);
     setStatusMessage('');
     setError(false);
-  
+
     const { name, email, subject, message } = formData;
-  
+
     if (!name || !email || !subject || !message) {
       setStatusMessage('Please fill out all fields.');
       setError(true);
       setSubmitting(false);
       return;
     }
-  
+
     try {
       const response = await axios.post('/api/send-email', {
         name,
@@ -84,7 +56,7 @@ export default function Contact({ id }: ContactProps) {
         subject,
         message,
       });
-  
+
       if (response.status === 200) {
         setStatusMessage('Your message was sent successfully!');
         setFormData({ name: '', email: '', subject: '', message: '' });
@@ -102,11 +74,9 @@ export default function Contact({ id }: ContactProps) {
       }
       setError(true);
     }
-  
+
     setSubmitting(false);
   };
-  
-
 
   if (loading) {
     return (
@@ -119,6 +89,22 @@ export default function Contact({ id }: ContactProps) {
     );
   }
 
+  const fallbackImages = ['/assets/crmc.png', '/assets/nico.png'];
+
+  const getGoogleDriveImageUrl = (fileId: string) => {
+    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+};
+
+
+  const getImageSource = (imageUrl: string, fallbackImage: string) => {
+    if (!imageUrl) return fallbackImage;
+    if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) return imageUrl;
+    if (imageUrl.startsWith('/')) return imageUrl;
+    if (/^[a-zA-Z0-9_-]+$/.test(imageUrl)) return getGoogleDriveImageUrl(imageUrl);
+    return fallbackImage;
+};
+
+
   return (
     <div className="min-h-screen w-full py-24 bg-[#F5F5F5]" id={id}>
       {/* Header */}
@@ -127,7 +113,7 @@ export default function Contact({ id }: ContactProps) {
           Get In Touch
         </h1>
         <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
-          Let&apos;s work together to bring your ideas to life. I&apos;m always excited to take on new challenges.
+          {statsData?.description || "Let's work together to bring your ideas to life."}
         </p>
       </div>
 
@@ -173,20 +159,18 @@ export default function Contact({ id }: ContactProps) {
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-[#286F6E] focus:border-transparent transition-all duration-200"
               />
               <button
-  type="button"
-  onClick={handleSubmit}
-  disabled={submitting}
-  className="w-full py-3 px-6 bg-[#286F6E] text-white font-semibold rounded-xl hover:bg-[#1f5a5a] transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
->
-  {submitting ? 'Sending...' : 'Send Message'}
-</button>
-
-{statusMessage && (
-  <p className={`text-sm mt-2 font-medium ${error ? 'text-red-500' : 'text-green-600'}`}>
-    {statusMessage}
-  </p>
-)}
-
+                type="button"
+                onClick={handleSubmit}
+                disabled={submitting}
+                className="w-full py-3 px-6 bg-[#286F6E] text-white font-semibold rounded-xl hover:bg-[#1f5a5a] transform hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {submitting ? 'Sending...' : 'Send Message'}
+              </button>
+              {statusMessage && (
+                <p className={`text-sm mt-2 font-medium ${error ? 'text-red-500' : 'text-green-600'}`}>
+                  {statusMessage}
+                </p>
+              )}
             </form>
           </div>
 
@@ -228,19 +212,30 @@ export default function Contact({ id }: ContactProps) {
               </div>
             </div>
 
+            {/* Social Icons */}
             <div className="flex flex-wrap gap-3 mt-2">
-              {icons.map((social, index) => (
+              {Object.values(statsData?.social || {}).map((social: SocialLinks, index: number) => {
+                const fallbackImage = fallbackImages[index % fallbackImages.length];
+              const imageSource = getImageSource(social?.icon, fallbackImage)
+              console.log(imageSource)
+               return(
                 <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-white w-14 h-14 rounded-full flex items-center justify-center text-lg ${social.color} ${social.hoverColor} transition-all duration-300 transform hover:scale-105`}
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+                key={index}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-14 h-14 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center hover:scale-105 transition-transform"
+                title={social.social}
+              >
+                <Image
+                  src={imageSource}
+                  alt={social.social}
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 object-contain"
+                />
+              </a>
+               )})}
             </div>
 
           </div>
