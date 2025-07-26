@@ -11,6 +11,7 @@ import Contact from "./sections/Contact";
 import NoInternet from "./components/NoInternet";
 import LoadingPage from "./components/Loading";
 import Footer from "./components/Footer";
+import Stack from "./sections/Stack";
 
 export default function Home() {
   const [isOnline, setIsOnline] = useState<boolean>(true);
@@ -121,6 +122,7 @@ export default function Home() {
       <Navbar />
       <div>
         <Hero />
+        <Stack />
         <About />
         <Work />
         <Project />
