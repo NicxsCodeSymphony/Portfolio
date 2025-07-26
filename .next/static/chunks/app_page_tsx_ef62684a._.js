@@ -1,7 +1,7 @@
 (globalThis.TURBOPACK_CHUNK_LISTS = globalThis.TURBOPACK_CHUNK_LISTS || []).push({
     script: typeof document === "object" ? document.currentScript : undefined,
     chunks: [
-  "static/chunks/_bbf1d576._.js",
+  "static/chunks/_056d592e._.js",
   "static/chunks/node_modules_next_b01fe8c8._.js",
   "static/chunks/node_modules_axios_lib_99999129._.js",
   "static/chunks/node_modules_three_build_three_core_df0bde7e.js",
@@ -16,7 +16,8 @@
   "static/chunks/node_modules_standardized-audio-context_build_es2019_types_3f9503e3._.js",
   "static/chunks/node_modules_standardized-audio-context_build_es2019_module_8b593883.js",
   "static/chunks/node_modules_standardized-audio-context_build_es2019_bb839900._.js",
-  "static/chunks/node_modules_76c51c6c._.js"
+  "static/chunks/node_modules_76c51c6c._.js",
+  "static/chunks/css_stack_7f9ebb3a.css"
 ],
     source: "dynamic"
 });

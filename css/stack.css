@@ -1,0 +1,21 @@
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  animation: scroll-marquee 40s linear infinite; /* Doubled duration since we doubled the content */
+  width: fit-content;
+  will-change: transform; /* Optimize for smooth animation */
+}
+
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move exactly half the width since content is duplicated */
+  }
+}

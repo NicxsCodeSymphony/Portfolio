@@ -50,10 +50,10 @@ const handleGet = async (_req: NextApiRequest, res: NextApiResponse) => {
 };
 
 const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { stack, icon } = req.body;
+  const { stack, rating, icon } = req.body;
 
-  if (!stack || !icon) {
-    return res.status(400).json({ error: 'Missing required fields: stack and icon' });
+  if (!stack || !rating || !icon) {
+    return res.status(400).json({ error: 'Missing required fields: stack, rating and icon' });
   }
 
   try {
@@ -66,6 +66,7 @@ const handlePost = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await ref.set({
       stack,
+      rating,
       icon,
       created_at: now(),
       updated_at: now(),
